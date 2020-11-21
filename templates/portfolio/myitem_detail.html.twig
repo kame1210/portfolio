@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css">
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<input type="hidden" name="entry_url" value="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}" id="entry_url">
+		<div id="myitemdetail-wrapper">
+			<input type="button" name="back" value="一覧へ戻る" onclick="history.back();return false" id="back-btn">
+			<div class="myitem_detail">
+				<div class="item-flex">
+					<div class="item-image">
+						<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{itemData.image}}" alt="{{itemData.item_name}}" class="image">
+					</div>
+					<div class="item-detail">
+						<ul class="detail">
+							<li class="name">商品名</li>
+							<li class="name">{{itemData.item_name}}</li>
+							<li class="d">詳細</li>
+							<li class="d">{{itemData.detail}}</li>
+							<li class="price">価格</li>
+							<li class="price">&yen;{{itemData.price|number_format(0, '.', ',')}}</li>
+							<input type="hidden" name="item_id" id="item_id" value="{{itemData.item_id}}">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="edit">
+				<form action="myitemedit.php" method="post" onsubmit="return deleteItem()">
+					<input type="hidden" name="name" value="{{itemData.item_name}}">
+					<input type="hidden" name="detail" value="{{itemData.detail}}">
+					<input type="hidden" name="price" value="{{itemData.price}}">
+					<input type="hidden" name="item_id" value="{{itemData.item_id}}">
+					<input type="submit" name="delete" value="削除">
+				</form>
+				<form action="myitemedit.php" method="post">
+					<input type="hidden" name="name" value="{{itemData.item_name}}">
+					<input type="hidden" name="detail" value="{{itemData.detail}}">
+					<input type="hidden" name="price" value="{{itemData.price}}">
+					<input type="hidden" name="item_id" value="{{itemData.item_id}}">
+					<input type="submit" name="edit" value="商品情報編集" id="edit">
+				</form>
+			</body>
+		</body>
+	</body>
+</html>

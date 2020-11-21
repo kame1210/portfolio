@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+    <link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    <title>商品削除</title>
+  </head>
+
+  <body>
+    <p>出品リスト</p>
+    {# <p><a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}image_submit.php">新しい商品を登録する</a></p>
+    <div id="submititem-list"> #}
+      {% for value in submitItemList %}
+        <div class="item">
+          <ul>
+            <li class="name">
+              <a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+            </li>
+            <li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
+            <li class="image">
+              <a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
+            </li>
+            <li class="detail">
+              <a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">詳細</a>
+            </li>
+            <li class="delete">
+              <p>削除</p>
+            </li>
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+
+  </html>

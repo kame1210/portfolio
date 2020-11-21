@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>ログイン</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="login-form-wrapper">
+			<div class="container">
+
+				<p class="title">
+					ログイン
+				</p>
+
+				<form method="post" action="login.php">
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">メールアドレス
+							</p><input type="text" name="email" value="">
+						</div>
+						{% if errArr.email | length > 0 %}
+							<span class="red">{{errArr.email}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">パスワード
+							</p><input type="password" name="password" value="">
+						</div>
+						{% if errArr.password | length > 0 %}
+							<span class="red">{{errArr.password}}</span>
+						{% endif %}
+						{% if errArr.fail | length > 0 %}
+							<p>{{errArr.fail}}</p>
+						{% endif %}
+					</div>
+					<p class="regist-url">
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}regist.php">初めてのご利用の方こちら</a>
+					</p>
+					<input type="submit" name="send" value="ログイン" class="submit-btn">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

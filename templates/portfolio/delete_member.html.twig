@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>退会</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="delete-member-wrapper">
+			<div class="container">
+				<p class="title">
+					退会
+				</p>
+
+				<form action="delete_confirm.php" method="post">
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">パスワード
+							</p><input type="password" name="password" value="">
+						</div>
+						{% if errArr.password | length > 0 %}
+							<span class="red">{{errArr.password}}</span>
+						{% endif %}
+						{% if errArr.fail | length > 0 %}
+							<span class="red">{{errArr.fail}}</span>
+						{% endif %}
+						<input type="submit" name="confirm" value="退会する" class="submit-btn">
+					</form>
+				</div>
+			</div>
+		</body>
+	</body>
+</html>

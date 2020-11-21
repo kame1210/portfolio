@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>お問い合わせ</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="form-wrapper">
+			<div class="container">
+				<p class="title">
+					お問い合わせ
+				</p>
+				<form action="contact_mail.php" method="post">
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								<span class="Required">必須</span>
+								お名前</p>
+							<input type="text" name="name" value="{{contactArr.name}}"><br>
+						</div>
+						{% if errArr.name | length > 0  %}
+							<span class="red">{{errArr.name}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								<span class="Required">必須</span>
+								メールアドレス</p>
+							<input type="text" name="email" value="{{contactArr.email}}"><br>
+						</div>
+						{% if errArr.email | length > 0  %}
+							<span class="red">{{errArr.email}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title content">
+								<span class="Required">必須</span>
+								お問い合わせ内容</p>
+							<textarea name="contents">{{contactArr.contents}}</textarea><br>
+						</div>
+						{% if errArr.contents | length > 0  %}
+							<span class="red">{{errArr.contents}}</span>
+						{% endif %}
+					</div>
+
+					<div class="attention">
+						<i class="fas fa-exclamation-circle"></i>
+						<p>送信前に内容の確認をお願いいたします。</p>
+					</div>
+					<input type="submit" name="send" value="送信" class="submit-btn">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

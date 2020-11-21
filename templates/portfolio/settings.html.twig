@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>会員登録</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="form-wrapper">
+			<div class="container">
+				<input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}">
+				<form method="post" action="settings.php">
+					<p id="title">
+						登録情報変更
+					</p>
+					<p id="miss">
+						{% if errArr.fail | length > 0 %}
+							<span class="red">{{errArr.fail}}</span>
+						{% endif %}
+					</p>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								お名前(氏名)
+							</p>
+							<input type="text" name="family_name" value="{{userData.family_name}}" class="double">
+							<input type="text" name="first_name" value="{{userData.first_name}}" class="double">
+						</div>
+						{% if errArr.family_name | length > 0 %}<br>
+							<span class="red">{{errArr.family_name}}</span>
+						{% endif %}
+						{% if errArr.first_name | length > 0 %}<br>
+							<span class="red">{{errArr.first_name}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								お名前(かな)
+							</p>
+							<input type="text" name="family_name_kana" value="{{userData.family_name_kana}}" class="double">
+							<input type="text" name="first_name_kana" value="{{userData.first_name_kana}}" class="double">
+						</div>
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">性別</p>
+							<div class="block auto-size">
+								{% for index, label in sexArr %}
+									<input type="radio" name="sex" value="{{index}}" id="sex_{{index}}" {% if userData.sex == index %} checked="checked" {% endif %} class="sex">
+									<label for="sex_{{index}}" class="sex">{{label}}</label>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								生年月日
+							</p>
+							<select name="year" class="select-btn select-auto">
+								{% for index, label in yearArr %}
+									<option value="{{index}}" {% if userData.year == index %} selected {% endif %}>{{label}}</option>
+								{% endfor %}
+							</select>
+							<select name="month" class="select-btn">
+								{% for index, label in monthArr %}
+									<option value="{{index}}" {% if userData.month == index %} selected {% endif %}>{{label}}</option>
+								{% endfor %}
+							</select>
+							<select name="day" class="select-btn">
+								{% for index, label in dayArr %}
+									<option value="{{index}}" {% if userData.day == index %} selected {% endif %}>{{label}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						{% if errArr.year | length > 0 %}<br>
+							<span class="red">{{errArr.year}}</span>
+						{% endif %}
+						{% if errArr.month | length > 0 %}<br>
+							<span class="red">{{errArr.month}}</span>
+						{% endif %}
+						{% if errArr.day | length > 0 %}<br>
+							<span class="red">{{errArr.day}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title margin-title">
+								郵便番号
+							</p>
+							<div class="zip-wrap">
+								<input type="text" name="zip" value="{{userData.zip}}" id="zip" size="7" maxlength="7">
+								<input type="button" name="address_search" value="〒から住所を入力" id="address_search">
+							</div>
+						</div>
+						{% if errArr.zip | length > 0 %}<br>
+							<span class="red">{{errArr.zip}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title margin-title">
+								住所
+							</p>
+							<div class="block">
+								<input type="text" name="address1" value="{{userData.address1}}" id="address" size="40" class="address-input" placeholder="市町村区~番地まで">
+								<input type="text" name="address2" value="{{userData.address2}}" id="address" size="40" class="address-input" placeholder="マンション名や部屋番号">
+							</div>
+						</div>
+						{% if errArr.address | length > 0 %}<br>
+							<span class="red">{{errArr.address}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								メールアドレス
+							</p>
+							<input type="text" name="email" value="{{userData.email}}" size="40">
+						</div>
+						{% if errArr.email | length > 0 %}<br>
+							<span class="red">{{errArr.email}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								電話番号
+							</p>
+							<input type="text" name="tel" value="{{userData.tel}}" size="11" maxlength="11">
+						</div>
+						{% if errArr.tel | length > 0 %}<br>
+							<span class="red">{{errArr.tel}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								パスワード
+							</p>
+							<div class="block">
+								<input type="password" name="password" value="" id="password">
+								<span>パスワードを表示する</span>
+								<input type="checkbox" id="passcheck">
+							</div>
+						</div>
+						{% if errArr.password | length > 0 %}
+							<span class="red">{{errArr.password}}</span>
+						{% endif %}
+					</div>
+					<div class="submit-btn-box">
+						<input class="submit-btn" type="submit" name="update" value="変更">
+					</div>
+				</div>
+			</body>
+		</body>
+	</body>
+</html>

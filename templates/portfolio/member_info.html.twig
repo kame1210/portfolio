@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>会員情報</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div class="meminfo-wrapper">
+			<div class="container">
+				<div class="meminfo-list">
+					<p class="meminfo-title">お名前(氏名)</p>
+					<p class="mem-info">{{userData.family_name}}
+						{{userData.first_name}}</p>
+				</div>
+				<div class="meminfo-list">
+					<p class="meminfo-title">お名前(かな)</p>
+					<p class="mem-info">{{userData.family_name_kana}}
+						{{userData.first_name_kana}}</p>
+				</div>
+				<div class="meminfo-list">
+					<p class="meminfo-title">性別</p>
+					<p class="mem-info">
+						{% if userData.sex == '1' %}男性{% elseif userData.sex == '2' %}女性
+						{% endif %}
+					</p>
+				</div>
+				<div class="meminfo-list">
+					<p class="meminfo-title">生年月日</p>
+					<p class="mem-info">{{userData.year}}年
+						{{userData.month}}月
+						{{userData.day}}日</p>
+				</div>
+				<div class="meminfo-list">
+					<p class="meminfo-title">郵便番号</p>
+					<p class="mem-info">{{userData.zip}}</p>
+				</div>
+				<div class="meminfo-list">
+					<p class="meminfo-title">住所</p>
+					<p class="mem-info">{{userData.address1}}&ensp;{{userData.address2}}</p>
+				</div>
+				<div class="meminfo-list">
+					<p class="meminfo-title">メールアドレス</p>
+					<p class="mem-info">{{userData.email}}</p>
+				</div>
+				<div class="meminfo-list">
+					<p class="meminfo-title">電話番号</p>
+					<p class="mem-info">{{userData.tel}}</p>
+				</div>
+				<div class="meminfo-list">
+					<p class="meminfo-title">パスワード</p>
+					<p class="mem-info">********</p>
+				</div>
+				<p class="settings-url">
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}settings.php">登録情報の変更</a>
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>マイページ</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="mypage-wrapper">
+			<div class="container">
+
+				<p class="title">マイページ</p>
+
+				<div class="menu-box">
+					<ul class="box">
+						<li class="box-title">会員情報</li>
+						<li>
+							<i class="far fa-address-card fa-4x"></i>
+						</li>
+						<li>会員情報の確認</li>
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}member_info.php"></a>
+					</ul>
+					<ul class="box">
+						<li class="box-title">お気に入りリスト</li>
+						<li>
+							<i class="far fa-star fa-4x"></i>
+						</li>
+						<li>お気に入りリストの確認</li>
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}like_item.php"></a>
+					</ul>
+					<ul class="box">
+						<li class="box-title">出品リスト</li>
+						<li>
+							<i class="far fa-list-alt fa-4x"></i>
+						</li>
+						<li>出品リストの確認</li>
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}submit_Item.php"></a>
+					</ul>
+				</div>
+				<div class="menu-box">
+					<ul class="box">
+						<li class="box-title">買い物かご</li>
+						<li>
+							<i class="fas fa-shopping-cart fa-4x"></i>
+						</li>
+						<li>買い物かごを確認</li>
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}cart.php"></a>
+					</ul>
+					<ul class="box">
+						<li class="box-title">購入履歴</li>
+						<li>
+							<i class="fas fa-clipboard-list fa-4x"></i>
+						</li>
+						<li>購入履歴を確認</li>
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}order_history.php"></a>
+					</ul>
+					<ul class="box">
+						<li class="box-title">ログアウト</li>
+						<li>
+							<i class="fas fa-sign-out-alt fa-4x"></i>
+						</li>
+						<li>ログアウトします</li>
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}logout.php"></a>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	{% include "footer.html.twig" %}
+</html>

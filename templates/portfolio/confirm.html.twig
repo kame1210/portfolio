@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>会員登録確認</title>
+	</head>
+	<body>
+		{% include "header.html.twig" %}
+		<div class="meminfo-wrapper">
+			<div class="container">
+				<form method="post" action="confirm.php">
+
+					<div class="meminfo-list">
+						<p class="meminfo-title">お名前(氏名)</p>
+						<p class="mem-info">{{dataArr.family_name}}
+							{{dataArr.first_name}}</p>
+					</div>
+					<div class="meminfo-list">
+						<p class="meminfo-title">お名前(かな)</p>
+						<p class="mem-info">{{dataArr.family_name_kana}}
+							{{dataArr.first_name_kana}}</p>
+					</div>
+					<div class="meminfo-list">
+						<p class="meminfo-title">性別</p>
+						<p class="mem-info">
+							{% if dataArr.sex == '1' %}男性{% elseif dataArr.sex == '2' %}女性
+							{% endif %}
+						</p>
+					</div>
+					<div class="meminfo-list">
+						<p class="meminfo-title">生年月日</p>
+						<p class="mem-info">{{dataArr.year}}年
+							{{dataArr.month}}月
+							{{dataArr.day}}日</p>
+					</div>
+					<div class="meminfo-list">
+						<p class="meminfo-title">郵便番号</p>
+						<p class="mem-info">{{dataArr.zip}}</p>
+					</div>
+					<div class="meminfo-list">
+						<p class="meminfo-title">住所</p>
+						<p class="mem-info">{{dataArr.address1}}&ensp;
+							{{dataArr.address2}}</p>
+					</div>
+					<div class="meminfo-list">
+						<p class="meminfo-title">メールアドレス</p>
+						<p class="mem-info">{{dataArr.email}}</p>
+					</div>
+					<div class="meminfo-list">
+						<p class="meminfo-title">電話番号</p>
+						<p class="mem-info">{{dataArr.tel}}</p>
+					</div>
+					<div class="meminfo-list">
+						<p class="meminfo-title">パスワード</p>
+						<p class="mem-info">********</p>
+					</div>
+					<div class="flex">
+						<input type="submit" name="back" value="戻る" class="submit-btn">
+						<input type="submit" name="complete" value="登録完了" class="submit-btn">
+						{% for key, value in dataArr %}
+							{% if value is iterable %}
+								{% for v in value %}
+									<input type="hidden" name="{{key}}[]" value="{{v}}">
+								{% endfor %}
+							{% else %}
+								<input type="hidden" name="{{key}}" value="{{value}}">
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

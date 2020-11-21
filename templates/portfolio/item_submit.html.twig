@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<title>商品登録</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="form-wrapper">
+			<div class="container">
+				<form method="post" action="item_submit.php" enctype="multipart/form-data">
+
+					<p id="title">商品登録</p>
+
+					{% if  msg | length > 0 %}
+						<p>{{msg}}</p>
+					{% endif %}
+
+					<div class="form-list">
+						<p class="form-title">商品名</p>
+						<input type="text" name="item_name" value="{{dataArr.item_name}}">
+						{% if errArr.item_name | length > 0 %}
+							<span>{{errArr.item_name}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">価格</p>
+						<input type="text" name="price" value="{{dataArr.price}}">
+						{% if errArr.price | length > 0 %}
+							<span>{{errArr.price}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">商品詳細</p>
+						<textarea name="detail" cols="70" rows="20">{{dataArr.detail}}</textarea>
+						{% if errArr.detail | length > 0 %}
+							<span>{{errArr.detail}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">カテゴリー</p>
+						{% for index, label in ctgList %}
+							<input type="radio" name="category" value="{{label.ctg_id}}" id="category_{{label.ctg_id}}" {% if dataArr.category == label.ctg_id %} checked="checked" {% endif %}>
+							<label for="category_{{label.ctg_id}}">{{label.category_name}}</label>
+						{% endfor %}
+						{% if errArr.category | length > 0 %}
+							<span>{{errArr.category}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">サブカテゴリー</p>
+						{% for label in subCtgList %}
+							<input type="radio" name="subcategory" value="{{label.ctg_id}}" id="subcategory_{{label.ctg_id}}" {% if dataArr.subcategory == ctg_id %} checked="checked" {% endif %}>
+							<label for="subcategory_{{label.ctg_id}}">{{label.category_name}}</label>
+						{% endfor %}
+						{% if errArr.subcategory | length > 0 %}
+							<span>{{errArr.subcategory}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">画像</p>
+						<input type="file" name="image">
+						{% if errArr.image | length > 0 %}
+							<span>{{errArr.image}}</span>
+						{% endif %}
+						{% if errArr.size | length > 0 %}
+							<span>{{errArr.image}}</span>
+						{% endif %}
+						{% if errArr.mime | length > 0 %}
+							<span>{{errArr.image}}</span>
+						{% endif %}
+					</div>
+					<div class="submit-btn-box">
+						<input class="submit-btn" type="submit" name="send" value="商品登録">
+						{% if errArr.miss | length > 0 %}
+							<p>{{errArr.miss}}</p>
+						{% endif %}
+					</div>
+				</form>
+				<p class="url">
+					<a href="{{ constant('portfolio\\Bootstrap::ENTRY_URL') }}submit_item.php">一覧へ移動する</a>
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

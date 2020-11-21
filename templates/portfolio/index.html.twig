@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/slick.js"></script>
+		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/slick-theme.css" type="text/css">
+		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/slick.css" type="text/css">
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>top</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<p id="site-info">
+			あなたの趣味で世界が広がる
+		</p>
+		<div id="index-wrapper">
+			<div class="container">
+				<div id="top-image"></div>
+				<p id="item-info">
+					人気商品一覧
+				</p>
+				<div class="item-box">
+					<p class="ctg-name">
+						{{ cateArr[0].category_name }}
+					</p>
+
+					<div class="item-list slider">
+						{% for value in itemArr[0] %}
+							<div class="item">
+								<ul>
+									<li class="name">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+									</li>
+									<li class="image">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
+									</li>
+									<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
+									{% include "viewlikes.html.twig" %}
+								</ul>
+							</div>
+						{% endfor %}
+					</div>
+
+					<button class="ctg-btn" type="button">
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.php?ctg_id={{cateArr[0].ctg_id}}&page=1">MORE!</a>
+					</button>
+				</div>
+
+				<div class="item-box">
+					<p class="ctg-name">
+						{{ cateArr[1].category_name }}
+					</p>
+
+					<div class="item-list">
+						{% for value in itemArr[1] %}
+							<div class="item">
+								<ul>
+									<li class="name">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+									</li>
+
+									<li class="image">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
+									</li>
+									<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
+									{% include "viewlikes.html.twig" %}
+								</ul>
+							</div>
+						{% endfor %}
+					</div>
+
+					<button class="ctg-btn" type="button">
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.php?ctg_id={{cateArr[1].ctg_id}}&page=1">MORE!</a>
+					</button>
+				</div>
+
+				<div class="item-box">
+					<p class="ctg-name">
+						{{ cateArr[2].category_name }}
+					</p>
+
+					<div class="item-list">
+						{% for value in itemArr[2] %}
+							<div class="item">
+								<ul>
+									<li class="name">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+									</li>
+									<li class="image">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
+									</li>
+									<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
+									{% include "viewlikes.html.twig" %}
+								</ul>
+							</div>
+						{% endfor %}
+					</div>
+
+					<button class="ctg-btn" type="button">
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.php?ctg_id={{cateArr[2].ctg_id}}&page=1">MORE!</a>
+					</button>
+				</div>
+
+				<div id="subcate-box">
+					<p class="subcate-name">
+						サブカテゴリー
+					</p>
+					<div class="container">
+						{% for label in subCateArr %}
+							<button type="button" class="subcategory">
+								<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.php?subctg_id={{ label.ctg_id }}&page=1">{{ label.category_name  }}</a>
+							</button>
+						{% endfor %}
+					</div>
+				</div>
+
+				<div id="search-box">
+					<p class="search-name">
+						フリーワードで検索
+					</p>
+					<form action="list.php" method="get" id="search-form">
+						<input type="text" name="search" value="" id="sform" placeholder="キーワードを入力">
+						<input type="hidden" name="page" value="1">
+						<button id="sbtn" type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</body>
+	{% include "footer.html.twig" %}
+</html>

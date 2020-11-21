@@ -1,0 +1,112 @@
+// レスポンシブ
+@mixin mq($breakpoint: tab) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+// map-get $breakpoints(連想配列)から$breakpoint(引数)で指定されたキーの値を取得している。
+
+
+// 送信ボタン
+@mixin submitbutton($width: 150px) {
+  .submit-btn {
+    border-radius: 6px;
+    margin: 50px auto;
+    padding: 20px 0;
+    width: $width;
+    display: block;
+    letter-spacing: 0.05em;
+    background: #5bc8ac;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    @content;
+  }
+}
+
+// 戻るボタン
+@mixin backbutton() {
+  #back-btn {
+    position: relative;
+    top: 20px;
+    left: 40px;
+    font-size: 1.4rem;
+    border: 1px solid #fff;
+    padding: 15px 10px;
+    display: block;
+    letter-spacing: 0.05em;
+    color: $font_color;
+    font-weight: bold;
+    font-size: 1.4rem;
+    @content;
+  }
+}
+
+// セレクトボタン
+@mixin selectbutton() {
+  height: 30px;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+// ページタイトル
+@mixin title() {
+  .title {
+    margin: 25px 0;
+    font-size: 1.7rem;
+    text-align: left;
+    @content;
+  }
+}
+
+@mixin clearfix() {
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+}
+
+// #search-form {
+//   width: 700px;
+//   position: absolute;
+//   top: 300px;
+//   left: 350px;
+//   z-index: 2;
+//   #sform {
+//     width: 80%;
+//     height: 40px;
+//     font-size: 17px;
+//     padding: 0 10px;
+//     color: $font_color;
+//     border-radius: 10px;
+//     border: transparent;
+//     background-color: #fff;
+//   }
+//   #sbtn {
+//     height: 40px;
+//     position: absolute;
+//     background: none;
+//     left: 540px;
+//     border: none;
+//     color: $font_color;
+//     font-size: 15px;
+//     @include mq(tab){
+//       left:330px;
+//     }
+//   }
+// }
+
+// before
+      // &::before {
+      //   background-color: rgba(0, 0, 0, 0.3);
+      //   position: absolute;
+      //   top: 0;
+      //   right: 0;
+      //   bottom: 0;
+      //   left: 0;
+      //   content: " ";
+      // }

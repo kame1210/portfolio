@@ -1,0 +1,16 @@
+@import "variable";
+
+html {
+  font-family: "Noto Sans JP", sans-serif;
+  color: $font_color;
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+li {
+  list-style: none;
+}

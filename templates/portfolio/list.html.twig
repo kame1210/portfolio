@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/slick.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/remodal.min.js"></script>
+		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/slick-theme.css" type="text/css">
+		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/slick.css" type="text/css">
+		<link rel="stylesheet" type="text/css" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/remodal.css">
+		<link rel="stylesheet" type="text/css" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/remodal-default-theme.css">
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>商品一覧</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="list-wrapper">
+			{% include 'category_menu.html.twig' %}
+			<p class="pop-up-p">
+				<a data-remodal-target="modal" class="pop-up">絞込み</a>
+			</p>
+			<div id="item-list">
+				<div class="item-box">
+					{% for value in dataArr %}
+						<div class="item">
+							<ul>
+								<li class="image">
+									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
+								</li>
+								<li class="name">
+									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+								</li>
+								<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
+								{% include "viewlikes.html.twig" %}
+							</ul>
+						</div>
+					{% endfor %}
+				</div>
+				{% include "page.html.twig" %}
+			</div>
+		</div>
+		{# -------- #}
+		{% include "footer.html.twig" %}
+	</body>
+</html>

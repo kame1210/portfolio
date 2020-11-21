@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>購入履歴</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="orderhis-wrapper">
+			<div class="container">
+				<p class="title">購入履歴</p>
+
+				<div class="order-box">
+					{% for value in orderId %}
+						<details open>
+							<summary>
+								<div class="order-date">
+									<p>注文日時</p>
+									<p>{{value.regist_date}}</p>
+								</div>
+								<div class="order-price">
+									<p>合計金額</p>
+									<p>
+										{% for v in orderPrice %}
+											{% if v.order_id == value.order_id %}
+												&yen;{{ v.sum | number_format(0, '.' , ',')}}
+											{% endif %}
+										{% endfor %}
+									</p>
+								</div>
+							</summary>
+							<div class="box">
+								{% for key, val in orderItem %}
+									{% if val.order_id == value.order_id %}
+										<ul class="item">
+											<li class="image"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{val.image}}"></li>
+											<li class="name">{{val.item_name}}</li>
+											<li class="price">&yen;{{val.price | number_format(0, '.', ',')}}</li>
+											<li class="quantity">数量:{{val.quantity}}</li>
+											<li class="item-detail">
+												<a href="{{ constant('portfolio\\Bootstrap::ENTRY_URL') }}itemdetail.php?item_id={{ val.item_id }}">商品画面へ</a>
+											</li>
+											<li></li>
+										</ul>
+									{% endif %}
+								{% endfor %}
+							</div>
+						</details>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

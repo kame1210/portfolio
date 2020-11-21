@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>マイページ</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="submititem-wrapper">
+			<div class="container">
+				<p class="title">出品リスト</p>
+				<p>
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}item_submit.php">新しい商品を登録する</a>
+				</p>
+				<div id="submititem-list">
+					{% for value in submitItemList %}
+						<div class="item">
+							<ul>
+								<li class="name">
+									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}myitemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+								</li>
+								<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
+								<li class="image">
+									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}myitemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
+								</li>
+								<li class="a-url">
+									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}myitemdetail.php?item_id={{value.item_id}}"></a>
+								</li>
+							</ul>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

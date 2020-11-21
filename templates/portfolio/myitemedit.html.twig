@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>商品情報編集ページ</title>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="form-wrapper">
+			<div class="container">
+				<form method="post" action="myitemedit.php" enctype="multipart/form-data">
+					<p id="title">
+						商品編集
+					</p>
+					<div class="form-list">
+						<p class="form-title">商品名</p>
+						<input type="text" name="item_name" value="{{itemData.name}}">
+						{% if errArr.item_name | length > 0 %}
+							<span>{{errArr.item_name}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">価格</p>
+						<input type="text" name="price" value="{{itemData.price}}">
+						{% if itemData.price | length > 0 %}
+							<span>{{errArr.price}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">商品詳細</p>
+						<textarea name="detail" cols="70" rows="20">{{itemData.detail}}</textarea>
+						{% if errArr.detail | length > 0 %}
+							<span>{{errArr.detail}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">カテゴリー</p>
+						{% for index, label in ctgList %}
+							<input type="radio" name="category" value="{{label.ctg_id}}" id="category_{{label.ctg_id}}" {% if dataArr.category == label.ctg_id %} checked="checked" {% endif %}>
+							<label for="category_{{label.ctg_id}}">{{label.category_name}}</label>
+						{% endfor %}
+						{% if errArr.category | length > 0 %}
+							<span>{{errArr.category}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">サブカテゴリー</p>
+						{% for label in subCtgList %}
+							<input type="radio" name="subcategory" value="{{label.ctg_id}}" id="subcategory_{{label.ctg_id}}" {% if dataArr.subcategory == ctg_id %} checked="checked" {% endif %}>
+							<label for="subcategory_{{label.ctg_id}}">{{label.category_name}}</label>
+						{% endfor %}
+						{% if errArr.subcategory | length > 0 %}
+							<span>{{errArr.subcategory}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<p class="form-title">画像</p>
+						<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{itemData.image}}" alt="{{itemData.item_name}}">
+						<input type="file" name="image">
+						{% if errArr.image | length > 0 %}
+							<span>{{errArr.image}}</span>
+						{% endif %}
+						{% if errArr.size | length > 0 %}
+							<span>{{errArr.image}}</span>
+						{% endif %}
+						{% if errArr.mime | length > 0 %}
+							<span>{{errArr.image}}</span>
+						{% endif %}
+					</div>
+					<div class="submit-btn-box">
+						<input type="hidden" name="item_id" value="{{itemData.item_id}}">
+						<input class="submit-btn" type="submit" name="complete" value="編集を完了する">
+						{% if errArr.miss | length > 0 %}
+							<p>{{errArr.miss}}</p>
+						{% endif %}
+					</div>
+				</form>
+				<div>
+					<p class="url">
+						<a href="http://localhost/DT/portfolio/submitItem.php">一覧へ移動する</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

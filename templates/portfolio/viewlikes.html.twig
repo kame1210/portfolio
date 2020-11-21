@@ -1,0 +1,44 @@
+<li class="likes">
+	<div class="btn-like" data-item-id="{{value.item_id}}">お気に入り<span>
+			{% for like in likeArr %}
+				{% if like.item_id == value.item_id %}
+					{{like.likes}}
+				{% endif %}
+			{% endfor %}
+		</span>
+	</div>
+</li>
+
+
+{# 旧作いいね操作命令文 #}
+{# {% set continue = false %}
+			{% for like in likeArr %}
+			  {% if like.item_id != value.item_id %}
+			    {% set continue = true %}
+			  {% endif %}
+			  {% if not continue %}
+			    {{like.likes}}
+			  {% endif %}
+			  {% if continue %}
+			    {% set continue = false %}
+			  {% endif %}
+			{% endfor %} #}
+
+{# {% for user in likeUser %}
+	{% if value.item_id in user.item_id %}
+		<i class="fas fa-heart red"></i>
+	{% elseif not value.item_id in user.item_id  %}
+		<i class="far fa-heart"></i>
+	{% endif %}
+{% endfor %} #}
+
+{# {% set break = false %}
+		{% for label in likeMemArr if not break %}
+			{% if id in label.mem_id %}
+				<i class="far fa-heart red"></i>
+				{% set break = true %}
+			{% else %}
+				<i class="fas fa-heart"></i>
+				{% set break = true %}
+			{% endif %}
+		{% endfor %} #}

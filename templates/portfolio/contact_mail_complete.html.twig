@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="widli=device-widli, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>お問い合わせ</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="contact-wrapper">
+			<div class="container">
+				<h1 class="">お問い合わせいただき、ありがとうございました。</h1>
+				<p class="contents">問い合わせを受付いたしました。<br>
+					3営業日以内にご返信させていただきます。<br>
+					今しばらくお待ちくださいませ。</p>
+				<p>
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}index.php">トップぺージへ戻る</a>
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

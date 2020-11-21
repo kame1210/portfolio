@@ -1,0 +1,19 @@
+<div id="item-list">
+	{% for value in likesItemList %}
+		<div class="item">
+			<ul>
+				<li class="name">
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+				</li>
+				<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
+				{# 数字をフォーマットしている #}
+				<li class="image">
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}images/{{value.image}}" alt="{{value.item_name}}"></a>
+				</li>
+				<li class="detail">
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">詳細</a>
+				</li>
+			</ul>
+		</div>
+	{% endfor %}
+</div>

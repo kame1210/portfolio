@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>会員登録</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="form-wrapper">
+			<div class="container">
+				<input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}">
+
+				<form method="post" action="confirm.php">
+					<p id="title">
+						新規会員登録
+					</p>
+
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								<span class="Required">必須</span>お名前(氏名)
+							</p>
+							<input type="text" name="family_name" value="{{dataArr.family_name}}" placeholder="姓" class="double">
+							<input type="text" name="first_name" value="{{dataArr.first_name}}" placeholder="名" class="double">
+						</div>
+						{% if errArr.family_name | length > 0 %}<br>
+							<span class="red">{{errArr.family_name}}</span>
+						{% endif %}
+						{% if errArr.first_name | length > 0 %}<br>
+							<span class="red">{{errArr.first_name}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								<span class="option">任意</span>お名前(かな)
+							</p>
+							<input type="text" name="family_name_kana" value="{{dataArr.family_name_kana}}" placeholder="せい" class="double">
+							<input type="text" name="first_name_kana" value="{{dataArr.first_name_kana}}" placeholder="めい" class="double">
+						</div>
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								<span class="Required">必須</span>性別
+							</p>
+							<div class="block auto-size">
+								{% for index, label in sexArr %}
+									<input type="radio" name="sex" value="{{index}}" id="sex_{{index}}" {% if dataArr.sex == index %} checked="checked" {% endif %} class="sex">
+									<label for="sex_{{index}}" class="sex">{{label}}</label>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								<span class="Required">必須</span>生年月日
+							</p>
+							<select name="year" class="select-btn select-auto">
+								{% for index, p in yearArr %}
+									<option value="{{index}}" {% if dataArr.year == index %} selected {% endif %}>{{p}}</option>
+								{% endfor %}
+							</select>
+							<select name="month" class="select-btn">
+								{% for index, p in monthArr %}
+									<option value="{{index}}" {% if dataArr.month == index %} selected {% endif %}>{{p}}</option>
+								{% endfor %}
+							</select>
+							<select name="day" class="select-btn">
+								{% for index, p in dayArr %}
+									<option value="{{index}}" {% if dataArr.day == index %} selected {% endif %}>{{p}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						{% if errArr.year | length > 0 %}<br>
+							<span class="red">{{errArr.year}}</span>
+						{% endif %}
+						{% if errArr.month | length > 0 %}<br>
+							<span class="red">{{errArr.month}}</span>
+						{% endif %}
+						{% if errArr.day | length > 0 %}<br>
+							<span class="red">{{errArr.day}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title margin-title">
+								<span class="Required">必須</span>郵便番号
+							</p>
+							<div class="zip-wrap">
+								<input type="text" name="zip" value="{{dataArr.zip}}" id="zip" size="7" maxlength="7" id="address-form">
+								<input type="button" name="address_search" id="address_search" value="〒から住所を検索する">
+							</div>
+						</div>
+						{% if errArr.zip | length > 0 %}<br>
+							<span class="red">{{errArr.zip}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title margin-title">
+								<span class="Required">必須</span>住所
+							</p>
+							<div class="block">
+								<input type="text" name="address1" value="{{dataArr.address1}}" id="address" class="address-input" placeholder="市町村区~番地まで">
+								<input type="text" name="address2" value="{{dataArr.address2}}" id="address2" class="address-input" placeholder="マンション名や部屋番号">
+							</div>
+						</div>
+						{% if errArr.address1 | length > 0 %}<br>
+							<span class="red">{{errArr.address1}}</span>
+						{% endif %}
+						{% if errArr.address2 | length > 0 %}<br>
+							<span class="red">{{errArr.address2}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								<span class="Required">必須</span>メールアドレス
+							</p>
+							<input type="text" name="email" value="{{dataArr.email}}">
+						</div>
+						{% if errArr.email | length > 0 %}<br>
+							<span class="red">{{errArr.email}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								<span class="Required">必須</span>電話番号
+							</p>
+							<input type="text" name="tel" value="{{dataArr.tel}}" size="11" maxlength="11">
+						</div>
+						{% if errArr.tel | length > 0 %}<br>
+							<span class="red">{{errArr.tel}}</span>
+						{% endif %}
+					</div>
+					<div class="form-list">
+						<div class="form-item">
+							<p class="form-title">
+								<span class="Required">必須</span>パスワード
+							</p>
+							<div class="block">
+								<input type="password" name="password" value="{{dataArr.password}}" id="password">
+								<span>パスワードを表示する</span>
+								<input type="checkbox" id="passcheck">
+							</div>
+						</div>
+						{% if errArr.password | length > 0 %}
+							<span class="red">{{errArr.password}}</span>
+						{% endif %}
+					</div>
+					<input type="submit" name="confirm" value="登録確認" class="submit-btn">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
