@@ -5,6 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/slick.js"></script>
+		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/slick-theme.css" type="text/css">
+		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/slick.css" type="text/css">
 		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css">
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	</head>
@@ -15,8 +18,17 @@
 			<input type="button" name="back" value="商品一覧へ戻る" onclick="history.back();return false" id="back-btn">
 			<input type="hidden" name="entry_url" value="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}" id="entry_url">
 			<div class="item-flex">
-				<div class="item-image">
-					<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{itemData.image}}" alt="{{itemData.item_name}}" class="image">
+				<div class="slider-area">
+					<div class="item-image slider">
+						{% for image in itemData.image %}
+							<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{image}}" class="image">
+						{% endfor %}
+					</div>
+					<div class="item-nav slider-nav">
+						{% for image in itemData.image %}
+							<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{image}}" alt="{{image}}" class="image">
+						{% endfor %}
+					</div>
 				</div>
 				<div class="item-detail">
 					<ul class="detail">

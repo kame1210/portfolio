@@ -65,7 +65,7 @@ switch ($mode) {
     $itemCount = $itm->getItemCount($type, $ctg_id);
     $pData = $page->getPageData($getPage, $itemCount);
 
-    $dataArr = $itm->getItemList($type ,$ctg_id, '', $pData['limit'], $pData['offset']);
+    $dataArr = $itm->getItemList($type, $ctg_id, '', $pData['limit'], $pData['offset']);
 
     $pageLink = $page->getPageLink();
     break;
@@ -76,7 +76,7 @@ switch ($mode) {
     $itemCount = $itm->getItemCount($type, '', $subctg_id);
     $pData = $page->getPageData($getPage, $itemCount);
 
-    $dataArr = $itm->getItemList($type ,'', $subctg_id, $pData['limit'], $pData['offset']);
+    $dataArr = $itm->getItemList($type, '', $subctg_id, $pData['limit'], $pData['offset']);
 
     $pageLink = $page->getPageLink();
     break;
@@ -94,7 +94,7 @@ switch ($mode) {
     $itemCount = $itm->getItemCount($type);
     $pData = $page->getPageData($getPage, $itemCount);
 
-    $dataArr = $itm->getItemList($type ,'', '', $pData['limit'], $pData['offset']);
+    $dataArr = $itm->getItemList($type, '', '', $pData['limit'], $pData['offset']);
 
     $pageLink = $page->getPageLink();
     break;

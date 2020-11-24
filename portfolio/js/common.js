@@ -43,7 +43,7 @@ $(function () {
       function (data) {
         console.log('ajax success');
 
-        $(button).children('span').html(data);
+        $(button).find('span').html(data);
         $(button).children('i').toggleClass('far');
         $(button).children('i').toggleClass('fas');
         $(button).children('i').toggleClass('red');
@@ -56,62 +56,78 @@ $(function () {
     );
   });
 
-  // ハンバーガーメニュー
-  // $('.nav_toggle').on('click', function () {
-  //   $('.nav_toggle, .nav').toggleClass('show');
-  // });
-
-  $('#nav_btn').on('click', function () {
-    $('body').toggleClass('nav_open');
-  });
+});
 
   // モーダルウインドウ
-  $(document).on('open', '.remodal', function () {
-    var modal = $(this);
-  });
-  $(document).on('opened', '.remodal', function () {
-    var modal = $(this);
-  });
-  $(document).on('close', '.remodal', function () {
-    var modal = $(this);
-  });
-  $(document).on('closed', '.remodal', function () {
-    var modal = $(this);
-  });
-  $(document).on('confirm', '.remodal', function () {
-    var modal = $(this);
-  });
-  $(document).on('cancel', '.remodal', function () {
-    var modal = $(this);
-  });
-
   $(function () {
-    $('.slider').slick({
-      infinite: true,
-      initialSlide: 0,
-      autoplay: false,
-      autoplaySpeed: 4000,
-      slidesToShow: 5,
-      slidesToScroll: 1,
-      responsive: [
-        {
-          breakpoint: 960,
-          settings: {
-            slidesToShow: 3,
-          }
-        },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 2,
-          }
-        }
-      ]
+    $(document).on('open', '.remodal', function () {
+      var modal = $(this);
+    });
+    $(document).on('opened', '.remodal', function () {
+      var modal = $(this);
+    });
+    $(document).on('close', '.remodal', function () {
+      var modal = $(this);
+    });
+    $(document).on('closed', '.remodal', function () {
+      var modal = $(this);
+    });
+    $(document).on('confirm', '.remodal', function () {
+      var modal = $(this);
+    });
+    $(document).on('cancel', '.remodal', function () {
+      var modal = $(this);
     });
   });
 
+// カーセルスライダー
+// $(function () {
+//   $('.slider').slick({
+//     infinite: true,
+//     initialSlide: 0,
+//     autoplay: false,
+//     autoplaySpeed: 4000,
+//     slidesToShow: 5,
+//     slidesToScroll: 1,
+//     responsive: [
+//       {
+//         breakpoint: 960,
+//         settings: {
+//           slidesToShow: 3,
+//         }
+//       },
+//       {
+//         breakpoint: 768,
+//         settings: {
+//           slidesToShow: 2,
+//         }
+//       }
+//     ]
+//   });
+// });
+
+// item_detail カーセルスライダー
+$(function () {
+  $('.slider').slick({
+    infinite: true,
+    initialSlide: 0,
+    slidesToShow: 1,
+    arrows: true,
+    slidesToScroll: 1,
+    swipe:true,
+    asNavFor: '.slider-nav',
+  });
+  $('.slider-nav').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    asNavFor: '.slider',
+    arrows: false,
+    dots: true,
+    focusOnSelect: true
+  });
 });
 
+// カートイン機能
 $(function () {
   var entry_url = $('#entry_url').val();
 
@@ -143,7 +159,12 @@ function deleteItem() {
   }
 }
 
-
+// navレスポンシブ
+$(function () {
+  $('#nav_btn').on('click', function () {
+    $('body').toggleClass('nav_open');
+  });
+});
 
 // $('#address_search').click(function () {
 

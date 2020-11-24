@@ -59,7 +59,14 @@ class Item
 
     $res = $this->db->selectLimit($table, $col, $where, $arrVal, $limit, $offset);
 
-    return ($res !== false && count($res) !== 0) ? $res : false;
+    if ($res !== false && count($res) !== 0) {
+      for ($i = 0;$i < count($res);$i++) {
+        $res[$i]['image'] = explode(',' , $res[$i]['image']);
+      }
+      return $res;
+    } else {
+      return false;
+    }
   }
 
   public function getItemSubList($ctg_id = '', $limit = '', $offset = '')
@@ -117,7 +124,14 @@ class Item
 
     $res = $this->db->select($table, $col, $where, $arrVal);
 
-    return ($res !== false && count($res) !== 0) ? $res : false;
+    if ($res !== false && count($res) !== 0) {
+      for ($i = 0;$i < count($res);$i++) {
+        $res[$i]['image'] = explode(',' , $res[$i]['image']);
+      }
+      return $res;
+    } else {
+      return false;
+    }
   }
 
   public function submitItemList()
@@ -130,21 +144,55 @@ class Item
 
     $res = $this->db->select($table, $col, $where, $arrVal);
 
-    return ($res !== false && count($res) !== 0) ? $res : false;
+    if ($res !== false && count($res) !== 0) {
+      for ($i = 0;$i < count($res);$i++) {
+        $res[$i]['image'] = explode(',' , $res[$i]['image']);
+      }
+      return $res;
+    } else {
+      return false;
+    }
   }
 
   public function getItemSearch($search)
   {
-    $table = ' item ';
-    $col = ' item_id, item_name, price, image, ctg_id ';
-    $where = ' item_name ';
+    $table = ' item i JOIN category cat ON i.ctg_id = cat.ctg_id JOIN subcategory subcate ON i.subctg_id = subcate.ctg_id ';
+    $col = ' i.item_id, i.item_name, i.price, i.image, i.ctg_id ';
+    $where = ' concat(i.item_name, i.detail, cat.category_name, subcate.category_name) ';
     $like = ($search !== '') ? ' ? ' : '';
     $arrVal = [$search];
 
     $res = $this->db->selectlike($table, $col, $where, $like, $arrVal);
 
-    return ($res !== false && count($res) !== 0) ? $res : false;
+    if ($res !== false && count($res) !== 0) {
+      for ($i = 0;$i < count($res);$i++) {
+        $res[$i]['image'] = explode(',' , $res[$i]['image']);
+      }
+      return $res;
+    } else {
+      return false;
+    }
   }
+
+  // public function getItemSearch($search)
+  // {
+  //   $table = ' item ';
+  //   $col = ' item_id, item_name, price, image, ctg_id ';
+  //   $where = ' concat(item_name, detail) ';
+  //   $like = ($search !== '') ? ' ? ' : '';
+  //   $arrVal = [$search];
+
+  //   $res = $this->db->selectlike($table, $col, $where, $like, $arrVal);
+
+  //   if ($res !== false && count($res) !== 0) {
+  //     for ($i = 0;$i < count($res);$i++) {
+  //       $res[$i]['image'] = explode(',' , $res[$i]['image']);
+  //     }
+  //     return $res;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   public function getItemSearchCount($search)
   {
@@ -159,7 +207,7 @@ class Item
     return $res[0]['itemCount'];
   }
 
-  public function getItemDetailDate($item_id)
+  public function getItemDetailData($item_id)
   {
     $table = ' item ';
     $col = ' item_id, item_name, detail, price, image, ctg_id ';
@@ -169,22 +217,39 @@ class Item
 
     $res = $this->db->select($table, $col, $where, $arrVal);
 
-    return ($res !== false && count($res) !== 0) ? $res : false;
+    if ($res !== false && count($res) !== 0) {
+      $res = $res[0];
+      $res['image'] = explode(',', $res['image']);
+
+      return $res;
+    } else {
+      return false;
+    }
   }
 
   public function uploadFile($dataArr)
   {
-    move_uploaded_file($dataArr['image']['tmp_name'], './upimages/upload_' . $dataArr['image']['name']);
+    for ($i = 0; $i < count($dataArr['image']['name']); $i++) {
+      if ($dataArr['image']['name'] !== '') {
+        move_uploaded_file($dataArr['image']['tmp_name'][$i], './upimages/upload_' . $dataArr['image']['name'][$i]);
+      }
+    }
   }
 
   public function insItemData($dataArr)
   {
+    $image = array_filter($dataArr['image']['name']);
+    for ($i = 0; $i < count($image); $i++) {
+      $image[$i] = 'upload_' . $image[$i];
+    }
+    $image = implode(',', $image);
+
     $table = ' item ';
     $insData = [
       'item_name' => $dataArr['item_name'],
       'detail' => $dataArr['detail'],
       'price' => $dataArr['price'],
-      'image' => 'upload_' . $dataArr['image']['name'],
+      'image' => $image,
       'ctg_id' => $dataArr['category'],
       'subctg_id' => $dataArr['subcategory'],
       'mem_id' => $dataArr['mem_id']

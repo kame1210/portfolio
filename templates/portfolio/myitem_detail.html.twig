@@ -4,30 +4,38 @@
 		<meta charset="UTF-8">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/slick.js"></script>
+		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/slick-theme.css" type="text/css">
+		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/slick.css" type="text/css">
 		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	</head>
 
 	<body>
 		{% include "header.html.twig" %}
-		<input type="hidden" name="entry_url" value="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}" id="entry_url">
-		<div id="myitemdetail-wrapper">
-			<input type="button" name="back" value="一覧へ戻る" onclick="history.back();return false" id="back-btn">
-			<div class="myitem_detail">
-				<div class="item-flex">
-					<div class="item-image">
-						<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{itemData.image}}" alt="{{itemData.item_name}}" class="image">
+		<div id="item-detail-wrapper">
+			<input type="button" name="back" value="商品一覧へ戻る" onclick="history.back();return false" id="back-btn">
+			<input type="hidden" name="entry_url" value="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}" id="entry_url">
+			<div class="item-flex">
+				<div class="slider-area">
+					<div class="item-image slider">
+						{% for image in itemData.image %}
+							<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{image}}" class="image">
+						{% endfor %}
 					</div>
-					<div class="item-detail">
-						<ul class="detail">
-							<li class="name">商品名</li>
-							<li class="name">{{itemData.item_name}}</li>
-							<li class="d">詳細</li>
-							<li class="d">{{itemData.detail}}</li>
-							<li class="price">価格</li>
-							<li class="price">&yen;{{itemData.price|number_format(0, '.', ',')}}</li>
-							<input type="hidden" name="item_id" id="item_id" value="{{itemData.item_id}}">
-						</ul>
+					<div class="item-nav slider-nav">
+						{% for image in itemData.image %}
+							<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{image}}" alt="{{image}}" class="image">
+						{% endfor %}
 					</div>
+				</div>
+				<div class="item-detail">
+					<ul class="detail">
+						<li class="name">{{itemData.item_name}}</li>
+						<li class="price">&yen;{{itemData.price|number_format(0, '.', ',')}}</li>
+						<li class="image-detail">{{itemData.detail}}</li>
+						<input type="hidden" name="item_id" id="item_id" value="{{itemData.item_id}}">
+					</ul>
 				</div>
 			</div>
 			<div class="edit">
@@ -45,7 +53,7 @@
 					<input type="hidden" name="item_id" value="{{itemData.item_id}}">
 					<input type="submit" name="edit" value="商品情報編集" id="edit">
 				</form>
-			</body>
+			</div>
 		</body>
 	</body>
 </html>

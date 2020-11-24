@@ -39,8 +39,6 @@ switch ($mode) {
       $dataArr = $_POST;
       $dataArr['email'] = $_SESSION['email'];
 
-      var_dump($_SESSION['email']);
-
       $res = $member->deleteMemberCheck($dataArr);
 
       if ($res === '') {
@@ -72,6 +70,8 @@ switch ($mode) {
 
 $context = [];
 $context['errArr'] = $errArr;
+$context['user_name'] = $_SESSION['user_name'];
+$context['id'] = $_SESSION['id'];
 
 $template = $twig->loadTemplate($template);
 $template->display($context);

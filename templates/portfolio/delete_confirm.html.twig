@@ -14,19 +14,19 @@
 		{% include "header.html.twig" %}
 		<div id="delete-confirm-wrapper">
 			<div class="container">
-				<p class="title">
+				<h2 class="title">
 					退会確認
-				</p>
+				</h2>
 
-				<p>本当に退会してよろしいですか?<br>
+				<p class="contents">本当に退会してよろしいですか?<br>
 					今までの購入履歴などが見ることができなくなります。</p>
 
 				<form action="delete_confirm.php" method="post">
 					<input type="submit" name="complete" value="退会する" class="submit-btn">
 				</form>
 
-				<div class="">
-					<a href="{{'portfolio\\Bootstrap::ENTRY_URL' }}index.php">退会しない</a>
+				<div class="url">
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}index.php">退会しない</a>
 				</div>
 			</div>
 		</div>

@@ -169,28 +169,10 @@ header {
 
 // index.html.twig
 // ------------------------------------------------
-#site-info {
-  height: 45px;
-  border: 1px solid rgb(182, 179, 179);
-  background-color: rgb(226, 220, 220);
-  margin: 0;
-  text-align: center;
-  line-height: 45px;
-}
-
 #index-wrapper {
   .container {
     font-size: 1.6rem;
-    // background-color: #f1f5f8;
-    @include mq(tab) {
-      font-size: 1.2rem;
-    }
-    @include mq(sp) {
-      font-size: 1.2rem;
-    }
-
     #top-image {
-      position: relative;
       width: 100%;
       height: 600px;
       background-image: url(../images/3835521_m.jpg);
@@ -204,16 +186,95 @@ header {
         height: 200px;
       }
     }
-    .item-box {
-      margin: 30px 0;
+
+    .block-topic {
+      height: 250px;
+      background-color: $background-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .topic {
+        width: 90%;
+        text-align: center;
+        .topic-message {
+          text-align: center;
+        }
+        #search-form {
+          width: 80%;
+          margin: 0 auto;
+          text-align: center;
+          #sform {
+            width: 50%;
+            height: 40px;
+            margin: 30px auto 0 auto;
+            font-size: 17px;
+            padding: 0 10px;
+            color: $font_color;
+            border-radius: 10px;
+            border: transparent;
+            background-color: #fff;
+            @include mq(sp) {
+              width: 80%;
+            }
+          }
+          #sbtn {
+            width: 50px;
+            height: 40px;
+            background: none;
+            border: none;
+            color: $font_color;
+            background-color: white;
+            border-radius: 10px;
+            font-size: 15px;
+            @include mq(tab) {
+              left: 330px;
+            }
+          }
+        }
+      }
     }
 
-    #item-info {
-      font-size: 2.4rem;
-      height: 50px;
+    .block-item {
       margin: 30px 0;
-      text-align: center;
-      line-height: 50px;
+      .item-list {
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: 0 auto;
+        .item {
+          width: 250px;
+          height: auto;
+          padding: 15px 15px;
+          ul {
+            display: inline-block;
+            .image {
+              img {
+                width: 250px;
+                height: 175px;
+              }
+              a {
+                overflow: hidden;
+              }
+            }
+            .name {
+              height: 40px;
+              line-height: 40px;
+              overflow: hidden;
+            }
+            .price {
+              float: left;
+            }
+            .likes {
+              display: block;
+              margin-left: auto;
+              text-align: right;
+              span {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
     }
 
     .ctg-name {
@@ -265,34 +326,6 @@ header {
         text-decoration: none;
         letter-spacing: 0.1em;
         color: $font_color;
-      }
-    }
-
-    .item-list {
-      display: flex;
-      flex-wrap: wrap;
-      width: 90%;
-      margin: 30px auto;
-      @include mq(sp) {
-        width: 80%;
-      }
-      .item {
-        width: 150px;
-        max-width: 150px;
-        margin: 20px 35px;
-        ul {
-          display: inline-block;
-          padding-inline-start: 0;
-        }
-        img {
-          width: 180px;
-          height: 150px;
-        }
-        a {
-          text-decoration: none;
-          color: #000;
-          overflow: hidden;
-        }
       }
     }
 
@@ -390,6 +423,7 @@ header {
   @include mq(sp) {
     display: block;
   }
+
   #item-list {
     width: 100%;
     box-sizing: border-box;
@@ -404,9 +438,35 @@ header {
         margin: 15px 0;
       }
       .item {
-        img {
-          width: 150px;
-          height: 150px;
+        width: 250px;
+        height: auto;
+        padding: 15px 15px;
+        ul {
+          display: inline-block;
+          .image {
+            img {
+              width: 250px;
+              height: 175px;
+            }
+            a {
+              overflow: hidden;
+            }
+          }
+          .name {
+            height: 40px;
+            line-height: 40px;
+            overflow: hidden;
+          }
+          .price {
+            float: left;
+          }
+          .likes {
+            margin-left: auto;
+            text-align: right;
+            span {
+              font-weight: bold;
+            }
+          }
         }
       }
     }
@@ -544,30 +604,53 @@ footer {
 // ------------------------------------------------
 #item-detail-wrapper {
   @include backbutton();
+  font-size: 1.6rem;
   .item-flex {
-    font-size: 1.6rem;
     display: flex;
     text-align: center;
-    width: 80%;
+    width: 90%;
     margin: 100px auto;
-    .item-image {
-      width: 100%;
-      .image {
-        width: 380px;
-        height: 350px;
-        text-align: left;
+    .slider-area {
+      margin-left: auto;
+      .item-image {
+        width: 400px !important;
       }
-      .image-detail {
-        width: 350px;
-        margin: 40px auto;
-        text-align: left;
-        font-size: 1.6rem;
+      .item-nav {
+        width: 400px !important;
+      }
+      @include mq(sp) {
+        .item-image {
+          width: 300px !important;
+          margin: 0 auto;
+        }
+        .item-nav {
+          width: 300px !important;
+          margin: 0 auto;
+        }
+      }
+      @include mq(tab) {
+        .item-image {
+          width: 400px !important;
+          margin: 0 auto;
+        }
+        .item-nav {
+          width: 400px !important;
+          margin: 0 auto;
+        }
+      }
+      @include mq(lg) {
+        .item-image {
+          width: 500px !important;
+        }
+        .item-nav {
+          width: 500px !important;
+        }
       }
     }
     .item-detail {
-      width: 100%;
+      flex-basis: 50%;
       text-align: left;
-      padding-left: 50px;
+      padding-left: 60px;
       box-sizing: border-box;
       .detail {
         padding-inline-start: 0;
@@ -579,9 +662,9 @@ footer {
           padding-bottom: 20px;
         }
         .image-detail {
-          width: 300px;
           font-size: 1.6rem;
           padding-bottom: 20px;
+          white-space: pre-wrap;
         }
       }
       .cart-in {
@@ -602,39 +685,25 @@ footer {
     }
   }
 
-  @include mq(tab) {
-    .item-flex {
-      display: block;
-      .image {
-        width: 300px !important;
-        height: 300px !important;
+  .edit {
+    text-align: center;
+    form {
+      margin: 10px 0;
+      input {
+        font-size: 1.6rem;
       }
-      .item-detail {
-        padding: 0;
-        .detail {
-          padding: 0 0 0 100px;
-          .image-detail {
-            width: 100%;
-          }
-        }
-      }
-    }
-    #cart-btn {
-      margin: 0 auto;
     }
   }
+  // heightの指定をするなら、img
 
   @include mq(sp) {
     .item-flex {
       display: block;
-      .image {
-        width: 250px !important;
-        height: 250px !important;
-      }
       .item-detail {
         padding: 0;
         .detail {
-          padding: 0 0 0 80px;
+          padding: 0 30px;
+          margin: 30px 0;
           .image-detail {
             width: 100%;
           }
@@ -645,8 +714,32 @@ footer {
       margin: 0 auto;
     }
   }
-}
 
+  @include mq(tab) {
+    .item-flex {
+      display: block;
+      .item-detail {
+        padding: 0;
+        .detail {
+          padding: 0 60px;
+          margin: 30px 0;
+          .image-detail {
+            width: 100%;
+          }
+        }
+      }
+    }
+    #cart-btn {
+      margin: 0 auto;
+    }
+  }
+
+  @include mq(lg) {
+    .item-detail {
+      padding-left: 120px !important;
+    }
+  }
+}
 // cart.html.twig ---------------------------------------------
 #cart-wrapper {
   font-size: 1.6rem;
@@ -807,7 +900,7 @@ footer {
 // meminfo.html.twig
 .meminfo-wrapper {
   margin-top: 50px;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   .container {
     width: 80%;
     background-color: white;
@@ -830,21 +923,24 @@ footer {
         font-size: 1.6rem;
       }
     }
-    .settings-url {
+    .url {
       text-align: center;
       margin: 30px 0;
       a {
         display: block;
+        &:hover {
+          color: $hover_color;
+        }
       }
     }
-    .flex{
+    .flex {
       display: flex;
       max-width: 340px;
-      margin:30px auto;
+      margin: 30px auto;
       text-align: center;
     }
-    @include submitbutton(){
-      margin:10px;
+    @include submitbutton() {
+      margin: 10px;
     }
   }
 }
@@ -895,6 +991,10 @@ footer {
 
 #form-wrapper {
   font-size: 1.6rem;
+  @include backbutton() {
+    top: 40px !important;
+    left: 80px !important;
+  }
   .container {
     margin: 100px auto;
     max-width: 800px;
@@ -1049,21 +1149,31 @@ footer {
       background: #fff;
     }
 
-    .sex {
+    .radio {
       height: auto !important;
       width: auto !important;
       background: #fff;
       margin-right: 5px;
     }
 
-    .sex:nth-of-type(1){
-      margin-left:auto;
+    .radio:nth-of-type(1) {
+      margin-left: auto;
     }
 
-    .auto-size{
+    .auto-size {
       width: auto !important;
     }
 
+    .thumbnail {
+      border-style: none !important;
+      height: 55px !important;
+      padding: 10px 0 !important;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+    }
     @include submitbutton();
   }
 }
@@ -1300,100 +1410,8 @@ footer {
   }
 }
 
-//  ----------------------------------------------------------------------
-
-#submititem-wrapper {
-  font-size: 1.6rem;
-  .container {
-    width: 80%;
-    #submititem-list {
-      display: flex;
-      margin: 10px 10px;
-      @include mq() {
-        flex-wrap: wrap;
-      }
-    }
-  }
-}
-
-//  ----------------------------------------------------------------------
-
-//  ----------------------------------------------------------------------
-// myitem_detail.html.twig
-
-#myitemdetail-wrapper {
-  @include backbutton();
-  font-size: 1.6rem;
-  .item-flex {
-    font-size: 1.6rem;
-    display: flex;
-    text-align: center;
-    width: 80%;
-    margin: 100px auto;
-    .item-image {
-      width: 100%;
-      .image {
-        width: 350px;
-        height: 350px;
-        text-align: left;
-      }
-    }
-    .item-detail {
-      width: 100%;
-      text-align: left;
-      padding-left: 50px;
-      box-sizing: border-box;
-      .detail {
-        padding-inline-start: 0;
-        .name {
-          font-size: 2rem;
-        }
-        .price {
-          font-size: 2rem;
-        }
-        .d {
-          font-size: 2rem;
-        }
-        .image-detail {
-          width: 300px;
-          font-size: 1.6rem;
-          padding-bottom: 20px;
-        }
-      }
-    }
-  }
-  .edit {
-    text-align: center;
-    form {
-      margin: 10px 0;
-      input {
-        font-size: 1.6rem;
-      }
-    }
-  }
-}
-
-// order_history.html.twig --------------------------------
-#order-complete-wrapper {
-  .container {
-    width: 80%;
-    margin: 50px auto;
-    .thanks {
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-    .his-url {
-      text-align: center;
-      a {
-        font-size: 1.8rem;
-      }
-    }
-  }
-}
-
 // contact_mail_complete.html.twig
-// contact_mail_fail.html.twig -------------------------------
+// contact_mail_fail.html.twig --------------------------
 #contact-wrapper {
   font-size: 1.6rem;
   .container {
@@ -1412,6 +1430,106 @@ footer {
     }
     .tel {
       margin-bottom: 30px;
+    }
+  }
+}
+
+// submit_item
+// likes_item -----------------------------------------
+#mypage-item-wrapper {
+  font-size: 1.6rem;
+  .container {
+    width: 80%;
+    margin: 30px auto;
+    .title {
+      margin: 5px 0 0 0;
+    }
+    .float {
+      float: left;
+    }
+    @include submitbutton() {
+      padding: 5px 0;
+      margin: 0px 0px 0px auto;
+    }
+    #item-list {
+      width: 100%;
+      box-sizing: border-box;
+      .item-box {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 30px 0;
+        @include mq(tab) {
+          margin: 15px 0;
+        }
+        @include mq(sp) {
+          margin: 15px 0;
+        }
+        .item {
+          width: 250px;
+          height: auto;
+          padding: 15px 15px;
+          ul {
+            display: inline-block;
+            .image {
+              img {
+                width: 250px;
+                height: 175px;
+              }
+              a {
+                overflow: hidden;
+              }
+            }
+            .name {
+              height: 40px;
+              line-height: 40px;
+              overflow: hidden;
+            }
+            .price {
+              float: left;
+            }
+            .likes {
+              margin-left: auto;
+              text-align: right;
+              span {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-like {
+  display: inline;
+}
+
+#delete-confirm-wrapper {
+  font-size: 1.6rem;
+  .container {
+    width: 80%;
+    margin: 50px auto 80px auto;
+    .title {
+      margin: 0;
+    }
+    p {
+      text-align: center;
+    }
+    .contents {
+      margin: 30px 0;
+      text-align: center;
+    }
+    .url {
+      text-align: center;
+      a{
+        &:hover{
+          color:$hover_color;
+        }
+      }
+    }
+    @include submitbutton (){
+      padding:10px 5px;
     }
   }
 }

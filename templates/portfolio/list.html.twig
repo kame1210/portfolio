@@ -29,7 +29,7 @@
 						<div class="item">
 							<ul>
 								<li class="image">
-									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
+									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image.0}}" alt="{{value.item_name}}"></a>
 								</li>
 								<li class="name">
 									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
@@ -43,7 +43,6 @@
 				{% include "page.html.twig" %}
 			</div>
 		</div>
-		{# -------- #}
 		{% include "footer.html.twig" %}
 	</body>
 </html>

@@ -29,12 +29,12 @@ if ($item_id === '') {
 
 $cateArr = $itm->getCategoryList();
 
-$itemData = $itm->getItemDetailDate($item_id);
+$itemData = $itm->getItemDetailData($item_id);
 
 $context = [];
 
 $context['cateArr'] = $cateArr;
-$context['itemData'] = $itemData[0];
+$context['itemData'] = $itemData;
 
 if (isset($_SESSION['user_name']) === true && $_SESSION['user_name'] !== '') {
   $context['user_name'] = $_SESSION['user_name'];

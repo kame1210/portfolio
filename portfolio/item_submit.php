@@ -45,20 +45,27 @@ if (isset($_POST['send']) === true) {
     $dataArr['subcategory'] = '';
   }
 
+  $image = array_filter($dataArr['image']['name']);
+  for ($i = 0;$i < count($image);$i++){
+    $image[$i] = 'upload_' . $image[$i];
+  }
+  $image = implode(',', $image);
+
   $errArr = $common->itemErrorCheck($dataArr);
   $err_check = $common->getErrorFlg();
 
   if ($err_check === true) {
-   
     $itm->uploadFile($dataArr);
-
     $res = $itm->insItemData($dataArr);
 
     if ($res === true) {
       $msg = '登録に成功しました';
+      unset($dataArr);
     } elseif ($res === false) {
       $msg = '登録に失敗しました';
     }
+  } else {
+    $msg = '入力内容をご確認ください';
   }
 }
 
@@ -66,7 +73,7 @@ $context = [];
 
 $context['ctgList'] = $ctgList;
 $context['subCtgList'] = $subCtgList;
-$context['dataArr'] = $dataArr;
+$context['dataArr'] = (isset($dataArr)) ? $dataArr : '';
 $context['errArr'] = $errArr;
 $context['msg'] = $msg;
 

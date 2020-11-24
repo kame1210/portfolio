@@ -12,6 +12,38 @@
 
 	<body>
 		{% include "header.html.twig" %}
+		<div id="mypage-item-wrapper">
+			<div class="container">
+				<h2 class="title float">出品リスト</h2>
+				<input
+				type="button" name="back" value="商品を登録する" onclick="location.href='{{constant('portfolio\\Bootstrap::ENTRY_URL')}}item_submit.php'" class="submit-btn">
+				<div id="item-list">
+					<div class="item-box">
+						{% for value in submitItemList %}
+							<div class="item">
+								<ul>
+									<li class="image">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}myitemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image.0}}" alt="{{value.item_name}}"></a>
+									</li>
+									<li class="name">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}myitemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+									</li>
+									<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
+									<li class="a-url">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}myitemdetail.php?item_id={{value.item_id}}"></a>
+									</li>
+								</ul>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+{# <body>
+		{% include "header.html.twig" %}
 		<div id="submititem-wrapper">
 			<div class="container">
 				<p class="title">出品リスト</p>
@@ -38,6 +70,4 @@
 				</div>
 			</div>
 		</div>
-	</body>
-
-</html>
+	</body> #}

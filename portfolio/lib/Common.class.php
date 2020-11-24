@@ -178,7 +178,7 @@ class Common
       $this->errArr['tel'] = '電話番号は、半角数字で11桁以内ハイフンなしで入力してください';
     }
   }
-  
+
   private function passwordCheck()
   {
     if ($this->dataArr['password'] === '') {
@@ -213,25 +213,56 @@ class Common
 
   private function imageCheck()
   {
-    if ($this->dataArr['image']['error'] === 0 && $this->dataArr['image']['size'] !== 0) {
-      if (is_uploaded_file($this->dataArr['image']['tmp_name']) === true) {
-        $image_info = getimagesize($this->dataArr['image']['tmp_name']);
-        $image_mime = $image_info['mime'];
+    $dataCheck = array_filter($this->dataArr['image']['name']);
 
-        // var_dump($image_mime);
+    if (!empty($dataCheck)) {
+      for ($i = 0; $i < count($this->dataArr['image']); $i++) {
+        if ($this->dataArr['image']['name'][$i] !== "") {
+          if ($this->dataArr['image']['error'][$i] === 0 && $this->dataArr['image']['size'][$i] !== 0) {
+            if (is_uploaded_file($this->dataArr['image']['tmp_name'][$i]) === true) {
+              $image_info = getimagesize($this->dataArr['image']['tmp_name'][$i]);
+              $image_mime = $image_info['mime'];
 
-        if ($this->dataArr['image']['size'] > 1048576) {
-          $errArr['image'] = 'アップロードできるサイズは、1MBまでです';
-        } elseif (preg_match('/^image\/jpeg$/', $image_mime) === 0) {
-          $errArr['image'] = 'アップロードできる画像の形式は、JPEG形式だけです';
+              if ($this->dataArr['image']['size'][$i] > 1048576) {
+                $this->errArr['image'] = 'アップロードできるサイズは、1MBまでです';
+              } elseif (preg_match('/^image\/jpeg$/', $image_mime) === 0) {
+                $this->errArr['image'] = 'アップロードできる画像の形式は、JPEG形式だけです';
+              }
+            } else {
+              $this->errArr['image'] = 'ファイルが正常にアップロードされませんでした';
+            }
+          } else {
+            $this->errArr['image'] = 'ファイルが正常にアップロードされませんでした';
+          }
         }
-      } else {
-        $errArr['image'] = 'ファイルが正常にアップロードされませんでした';
       }
     } else {
-      $errArr['image'] = 'ファイルが正常にアップロードされませんでした';
+      $this->errArr['image'] = 'サムネイルは1つ以上登録してください';
     }
   }
+
+  // 旧アイテム
+  // private function imageCheck()
+  // {
+  //   if ($this->dataArr['image']['error'] === 0 && $this->dataArr['image']['size'] !== 0) {
+  //     if (is_uploaded_file($this->dataArr['image']['tmp_name']) === true) {
+  //       $image_info = getimagesize($this->dataArr['image']['tmp_name']);
+  //       $image_mime = $image_info['mime'];
+
+  //       // var_dump($image_mime);
+
+  //       if ($this->dataArr['image']['size'] > 1048576) {
+  //         $errArr['image'] = 'アップロードできるサイズは、1MBまでです';
+  //       } elseif (preg_match('/^image\/jpeg$/', $image_mime) === 0) {
+  //         $errArr['image'] = 'アップロードできる画像の形式は、JPEG形式だけです';
+  //       }
+  //     } else {
+  //       $errArr['image'] = 'ファイルが正常にアップロードされませんでした';
+  //     }
+  //   } else {
+  //     $errArr['image'] = 'ファイルが正常にアップロードされませんでした';
+  //   }
+  // }
 
   private function categoryCheck()
   {

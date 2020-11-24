@@ -1,10 +1,11 @@
 // breakpoint
 $breakpoints: (
-  "sp": "screen and (max-width : 768px)",
+  "sp": "screen and (max-width : 560px)",
   "tab": "screen and (max-width : 960px)",
-  // "pc": "screen and (max-width : 1180px)",
+  "lg":"screen and (min-width : 1280px)",
 );
 
 // color
 $font_color: #333;
 $hover_color: #a5a1a1;
+$background-color: #f1f5f8;

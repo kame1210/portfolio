@@ -12,24 +12,26 @@
 
 	<body>
 		{% include "header.html.twig" %}
-		<div id="likes-wrapper">
+		<div id="mypage-item-wrapper">
 			<div class="container">
-				<p class="title">お気に入りリスト(いいね)</p>
+				<h2 class="title">いいねリスト</h2>
 				<div id="item-list">
-					{% for value in likesItemList %}
-						<div class="item">
-							<ul>
-								<li class="name">
-									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
-								</li>
-								<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
-								<li class="image">
-									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
-								</li>
-								{% include "viewlikes.html.twig" %}
-							</ul>
-						</div>
-					{% endfor %}
+					<div class="item-box">
+						{% for value in likesItemList %}
+							<div class="item">
+								<ul>
+									<li class="image">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image.0}}" alt="{{value.item_name}}"></a>
+									</li>
+									<li class="name">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+									</li>
+									<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
+									{% include "viewlikes.html.twig" %}
+								</ul>
+							</div>
+						{% endfor %}
+					</div>
 				</div>
 			</div>
 		</div>

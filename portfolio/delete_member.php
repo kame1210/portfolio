@@ -22,5 +22,11 @@ if (!isset($_SESSION['user_name'])) {
   header('Location: http://localhost/DT/portfolio/index.php');
 }
 
+$context = [];
+
+$context['user_name'] = $_SESSION['user_name'];
+$context['id'] = $_SESSION['id'];
+
+
 $template = $twig->loadTemplate('delete_member.html.twig');
-$template->display([]);
+$template->display($context);

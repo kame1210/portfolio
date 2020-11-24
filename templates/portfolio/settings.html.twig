@@ -53,8 +53,8 @@
 							<p class="form-title">性別</p>
 							<div class="block auto-size">
 								{% for index, label in sexArr %}
-									<input type="radio" name="sex" value="{{index}}" id="sex_{{index}}" {% if userData.sex == index %} checked="checked" {% endif %} class="sex">
-									<label for="sex_{{index}}" class="sex">{{label}}</label>
+									<input type="radio" name="sex" value="{{index}}" id="sex_{{index}}" {% if userData.sex == index %} checked="checked" {% endif %} class="radio">
+									<label for="sex_{{index}}" class="radio">{{label}}</label>
 								{% endfor %}
 							</div>
 						</div>

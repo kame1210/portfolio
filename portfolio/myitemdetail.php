@@ -26,10 +26,10 @@ if ($item_id === '') {
   header('Location: ' . Bootstrap::ENTRY_URL . 'mypage.php');
 }
 
-$itemData = $itm->getItemDetailDate($item_id);
+$itemData = $itm->getItemDetailData($item_id);
 
 $context = [];
-$context['itemData'] = $itemData[0];
+$context['itemData'] = $itemData;
 
 if (isset($_SESSION['user_name']) === true && $_SESSION['user_name'] !== '') {
   $context['user_name'] = $_SESSION['user_name'];

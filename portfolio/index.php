@@ -12,7 +12,7 @@ use portfolio\lib\likes;
 
 $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE);
 
-$dbLimit = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE, '', 10);
+$dbLimit = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE, '', 8);
 
 $dbgroup = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE, '', '', '', 'item_id');
 
@@ -40,7 +40,6 @@ $type = 'category';
 $itemArr[0] = $itm->getItemList($type, 1);
 $itemArr[1] = $itm->getItemList($type, 2);
 $itemArr[2] = $itm->getItemList($type, 3);
-
 
 // いいねの表示
 $likeArr = $likes->getLike();

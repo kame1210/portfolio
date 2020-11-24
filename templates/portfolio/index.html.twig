@@ -15,29 +15,37 @@
 
 	<body>
 		{% include "header.html.twig" %}
-		<p id="site-info">
-			あなたの趣味で世界が広がる
-		</p>
 		<div id="index-wrapper">
 			<div class="container">
 				<div id="top-image"></div>
-				<p id="item-info">
-					人気商品一覧
-				</p>
-				<div class="item-box">
-					<p class="ctg-name">
-						{{ cateArr[0].category_name }}
-					</p>
+				<div class="block-topic">
+					<div class="topic">
+						<p class="topic-message">当サイトは、個人の趣味を充実させる。<br>
+							個人の趣味を世界に広げて行くためのサイトです。<br>
+							あなたが興味がある分野や、キーワードを入力してください。
+						</p>
+						<form action="list.php" method="get" id="search-form">
+							<input type="text" name="search" value="" id="sform" placeholder="キーワードを入力">
+							<input type="hidden" name="page" value="1">
+							<button id="sbtn" type="submit">
+								<i class="fas fa-search"></i>
+							</button>
+						</form>
+					</div>
+				</div>
 
-					<div class="item-list slider">
+
+				<div class="block-item">
+					<h2 class="ctg-name">{{ cateArr[0].category_name }}</h2>
+					<div class="item-list">
 						{% for value in itemArr[0] %}
 							<div class="item">
 								<ul>
+									<li class="image">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image.0}}" alt="{{value[item_name]}}"></a>
+									</li>
 									<li class="name">
 										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
-									</li>
-									<li class="image">
-										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
 									</li>
 									<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
 									{% include "viewlikes.html.twig" %}
@@ -51,7 +59,7 @@
 					</button>
 				</div>
 
-				<div class="item-box">
+				<div class="block-item">
 					<p class="ctg-name">
 						{{ cateArr[1].category_name }}
 					</p>
@@ -60,13 +68,13 @@
 						{% for value in itemArr[1] %}
 							<div class="item">
 								<ul>
+									<li class="image">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image.0}}" alt="{{value.item_name}}"></a>
+									</li>
 									<li class="name">
 										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
 									</li>
 
-									<li class="image">
-										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
-									</li>
 									<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
 									{% include "viewlikes.html.twig" %}
 								</ul>
@@ -79,7 +87,7 @@
 					</button>
 				</div>
 
-				<div class="item-box">
+				<div class="block-item">
 					<p class="ctg-name">
 						{{ cateArr[2].category_name }}
 					</p>
@@ -88,11 +96,11 @@
 						{% for value in itemArr[2] %}
 							<div class="item">
 								<ul>
+									<li class="image">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image.0}}" alt="{{value.item_name}}"></a>
+									</li>
 									<li class="name">
 										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
-									</li>
-									<li class="image">
-										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}"></a>
 									</li>
 									<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
 									{% include "viewlikes.html.twig" %}
@@ -118,20 +126,18 @@
 						{% endfor %}
 					</div>
 				</div>
-
-				<div id="search-box">
-					<p class="search-name">
-						フリーワードで検索
-					</p>
-					<form action="list.php" method="get" id="search-form">
-						<input type="text" name="search" value="" id="sform" placeholder="キーワードを入力">
-						<input type="hidden" name="page" value="1">
-						<button id="sbtn" type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
-				</div>
-
+				{# <div id="search-box">
+									<p class="search-name">
+										フリーワードで検索
+									</p>
+									<form action="list.php" method="get" id="search-form">
+										<input type="text" name="search" value="" id="sform" placeholder="キーワードを入力">
+										<input type="hidden" name="page" value="1">
+										<button id="sbtn" type="submit">
+											<i class="fas fa-search"></i>
+										</button>
+									</form>
+								</div> #}
 			</div>
 		</div>
 	</body>

@@ -1,5 +1,20 @@
 <li class="likes">
-	<div class="btn-like" data-item-id="{{value.item_id}}">お気に入り<span>
+	<div class="btn-like" data-item-id="{{value.item_id}}">
+		<i class="far fa-heart">
+			<span>
+				{% for like in likeArr %}
+					{% if like.item_id == value.item_id %}
+						{{like.likes}}
+					{% endif %}
+				{% endfor %}
+			</span>
+		</i>
+	</div>
+</li>
+
+
+{# <li class="likes">
+	<div class="btn-like" data-item-id="{{value.item_id}}"><i class="far fa-heart"></i><span>
 			{% for like in likeArr %}
 				{% if like.item_id == value.item_id %}
 					{{like.likes}}
@@ -7,8 +22,7 @@
 			{% endfor %}
 		</span>
 	</div>
-</li>
-
+</li> #}
 
 {# 旧作いいね操作命令文 #}
 {# {% set continue = false %}

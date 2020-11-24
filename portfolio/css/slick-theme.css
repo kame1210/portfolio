@@ -90,7 +90,7 @@
 .slick-prev:before
 {
     font-family: "Font Awesome 5 Free";
-    content: "\f0a8";
+    content: "\f104";
     font-weight: 900;
     font-size: 30px;
 }
@@ -117,7 +117,7 @@
 .slick-next:before
 {
     font-family: "Font Awesome 5 Free";
-    content: "\f0a9";
+    content: "\f105";
     font-weight: 900;
     font-size: 30px;
 }
