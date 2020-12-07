@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
 		<link rel="stylesheet" href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css">
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<title>購入完了画面</title>
@@ -10,17 +12,18 @@
 
 	<body>
 		{% include "header.html.twig" %}
-		<div id="order-complete-wrapper">
+		<div id="message-wrapper">
 			<div class="container">
-				<p class="thanks">ご注文ありがとうございました!</p>
-
-				<div>
-					<p class="his-url">
-						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}orderhistory.php">購入履歴を確認する</a>
-					</p>
-				</div>
+				<h1>ご注文ありがとうございます！</h2>
+				<p class="contents">ご購入いただきました商品に関しましては、<br>
+					購入履歴をご確認ください。</p>
+				<p class="url">
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}order_history.php">購入履歴を確認する</a>
+				</p>
+				<p class="url">
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}index.php">トップページに移動する</a>
+				</p>
 			</div>
 		</div>
 	</body>
-
 </html>

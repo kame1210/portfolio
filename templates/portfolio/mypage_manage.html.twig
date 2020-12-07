@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<title>管理者マイページ</title>
+	</head>
+
+	<body>
+		{% include "header.html.twig" %}
+		<div id="mypage-wrapper">
+			<div class="container">
+				<h2 class="title">管理者マイページ</h2>
+
+				<div class="menu-box">
+					<ul class="box">
+						<li class="box-title">注文情報一覧</li>
+						<li>
+							<i class="far fa-address-card fa-4x"></i>
+						</li>
+						<li>注文の確認</li>
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}member_info.php"></a>
+					</ul>
+					<ul class="box">
+						<li class="box-title">売上一覧</li>
+						<li>
+							<i class="far fa-star fa-4x"></i>
+						</li>
+						<li>売上の確認</li>
+						<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}like_item.php"></a>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -24,7 +24,7 @@ class Likes
     return $res;
   }
 
-  public function getLikeMember($mem_id = 0)
+    public function getLikeMember($mem_id = 0)
   {
     $table = ' likes ';
     $column = ' mem_id ,item_id ';
@@ -32,6 +32,19 @@ class Likes
     $arrVal = [$mem_id];
 
     $res = $this->db->select($table, $column, $where, $arrVal);
+
+    return $res;
+  }
+
+  public function like_exsits($id, $item_id) {
+    $table = ' likes ';
+    $column =   '';
+    $where = ' mem_id = ? AND item_id =? ';
+    $arrVal = [$id, $item_id];
+
+    $res = $this->db->select($table, $column, $where, $arrVal);
+
+    $res = ($res !== []) ? true : false;
 
     return $res;
   }

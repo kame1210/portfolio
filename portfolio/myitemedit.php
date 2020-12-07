@@ -42,7 +42,7 @@ $subCtgList = $itm->getSubCategoryList();
 
 switch ($mode) {
   case 'edit':
-    
+
     $itemData = $_POST;
     $itemData['price'] = floor($itemData['price']);
     unset($itemData['edit']);
@@ -65,41 +65,33 @@ switch ($mode) {
     $dataArr['image'] = $_FILES['image'];
     unset($dataArr['complete']);
 
-
     if (isset($dataArr['category']) === false) {
       $dataArr['category'] = '';
     }
+    if (isset($dataArr['subcategory']) === false) {
+      $dataArr['subcategory'] = '';
+    }
+
+    $image = array_filter($dataArr['image']['name']);
+    for ($i = 0; $i < count($image); $i++) {
+      $image[$i] = 'upload_' . $image[$i];
+    }
+    $image = implode(',', $image);
 
     $errArr = $common->itemErrorCheck($dataArr);
-
     $err_check = $common->getErrorFlg();
 
     if ($err_check === true) {
-      move_uploaded_file($dataArr['image']['tmp_name'], './upimages/upload_' . $dataArr['image']['name']);
+      $itm->uploadFile($dataArr);
+      $res = $itm->updateItemData($dataArr);
 
-
-    $table = ' item ';
-    $insData = [
-      'item_name' => $dataArr['item_name'],
-      'detail' => $dataArr['detail'],
-      'price' => $dataArr['price'],
-      'image ' => 'upload_' . $dataArr['image']['name'],
-      'ctg_id' => $dataArr['category']
-    ];
-
-    // var_dump($insData);
-    $where = ' item_id = ? ';
-    $arrVal =  [$_POST['item_id']];
-
-    $res = $db->update($table,$insData,$where, $arrVal);
-
-    if ($res === true) {
-      header("Location: http://localhost/DT/portfolio/myitemdetail.php?item_id={$_POST['item_id']}");
-    } else {
-      $errArr['miss'] = '登録に失敗しました';
+      if ($res === true) {
+        header("Location: http://localhost/DT/portfolio/myitemdetail.php?item_id={$_POST['item_id']}");
+      } else {
+        $errArr['miss'] = '登録に失敗しました';
+      }
     }
-  }
-break;
+    break;
 }
 
 $context = [];
@@ -108,8 +100,8 @@ $context['itemData'] = $itemData;
 $context['errArr'] = $errArr;
 $context['ctgList'] = $ctgList;
 $context['subCtgList'] = $subCtgList;
-
+$context['id'] = $_SESSION['id'];
+$context['user_name'] = $_SESSION['user_name'];
 
 $template = $twig->loadTemplate('myitemedit.html.twig');
 $template->display($context);
-

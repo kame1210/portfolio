@@ -2,15 +2,27 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="widli=device-widli, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}js/common.js"></script>
+		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<title>会員登録完了</title>
 	</head>
 	<body>
-		<p>会員登録が完了しました</p>
-		<p>
-			<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}index.php">Top画面に戻る</a>
-		</p>
-		<p>
-			<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}mypage.php">マイページ</a>
-		</p>
+		{% include "header.html.twig" %}
+		<div id="message-wrapper">
+			<div class="container">
+				<h1>会員登録ありがとうございます！</h2>
+				<p class="contents">会員登録が完了いたしました。<br>
+					商品の購入や出品をお楽しみください。</p>
+				<p class="url">
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}index.php">Top画面に戻る</a>
+				</p>
+				<p class="url">
+					<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}mypage.php">マイページへ移動する</head></a>
+				</p>
+			</div>
+		</div>
 	</body>
 </html>

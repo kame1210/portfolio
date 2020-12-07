@@ -121,23 +121,11 @@
 					<div class="container">
 						{% for label in subCateArr %}
 							<button type="button" class="subcategory">
-								<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.php?subctg_id={{ label.ctg_id }}&page=1">{{ label.category_name  }}</a>
+								<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.php?subctg_id={{ label.ctg_id }}&page=1">{{ label.category_name }}</a>
 							</button>
 						{% endfor %}
 					</div>
 				</div>
-				{# <div id="search-box">
-									<p class="search-name">
-										フリーワードで検索
-									</p>
-									<form action="list.php" method="get" id="search-form">
-										<input type="text" name="search" value="" id="sform" placeholder="キーワードを入力">
-										<input type="hidden" name="page" value="1">
-										<button id="sbtn" type="submit">
-											<i class="fas fa-search"></i>
-										</button>
-									</form>
-								</div> #}
 			</div>
 		</div>
 	</body>

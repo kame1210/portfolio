@@ -5,7 +5,6 @@ namespace portfolio;
 require_once dirname(__FILE__) . '/Bootstrap.class.php';
 
 use portfolio\lib\PDODatabase;
-use portfolio\lib\Common;
 use portfolio\lib\Session;
 use portfolio\lib\Item;
 use portfolio\lib\order;
@@ -36,6 +35,7 @@ $orderPrice = $orderGroup->getOrderPrice();
 
 // 注文情報を元にitemを取得
 $orderItem = $order->getOrderitem();
+
 
 $context = [];
 

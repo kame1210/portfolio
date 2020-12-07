@@ -16,9 +16,9 @@
 			<div class="container">
 				<input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}">
 				<form method="post" action="settings.php">
-					<p id="title">
+					<h2 id="title">
 						登録情報変更
-					</p>
+					</h2>
 					<p id="miss">
 						{% if errArr.fail | length > 0 %}
 							<span class="red">{{errArr.fail}}</span>

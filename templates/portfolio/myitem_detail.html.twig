@@ -14,7 +14,7 @@
 	<body>
 		{% include "header.html.twig" %}
 		<div id="item-detail-wrapper">
-			<input type="button" name="back" value="商品一覧へ戻る" onclick="history.back();return false" id="back-btn">
+			<input type="button" name="back" value="出品リストへ戻る" onclick="location.href='{{constant('portfolio\\Bootstrap::ENTRY_URL')}}submit_item.php'" id="back-btn">
 			<input type="hidden" name="entry_url" value="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}" id="entry_url">
 			<div class="item-flex">
 				<div class="slider-area">

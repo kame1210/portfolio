@@ -24,6 +24,10 @@ $ses->checkSession();
 $customer_no = $_SESSION['customer_no'];
 
 // sessionでmem_id取得
+if ($_SESSION['id'] === NULL && $_SESSION['user_name'] === NULL) {
+  header("Location: http://localhost/DT/portfolio/login.php");
+}
+
 $mem_id = $_SESSION['id'];
 $user_name = $_SESSION['user_name'];
 

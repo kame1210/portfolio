@@ -25,6 +25,9 @@
 			</p>
 			<div id="item-list">
 				<div class="item-box">
+				{% if dataArr == [] %}
+					<p>検索結果は0件です</p>
+				{% endif %}
 					{% for value in dataArr %}
 						<div class="item">
 							<ul>

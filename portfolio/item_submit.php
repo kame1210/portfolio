@@ -45,12 +45,6 @@ if (isset($_POST['send']) === true) {
     $dataArr['subcategory'] = '';
   }
 
-  $image = array_filter($dataArr['image']['name']);
-  for ($i = 0;$i < count($image);$i++){
-    $image[$i] = 'upload_' . $image[$i];
-  }
-  $image = implode(',', $image);
-
   $errArr = $common->itemErrorCheck($dataArr);
   $err_check = $common->getErrorFlg();
 
@@ -76,6 +70,14 @@ $context['subCtgList'] = $subCtgList;
 $context['dataArr'] = (isset($dataArr)) ? $dataArr : '';
 $context['errArr'] = $errArr;
 $context['msg'] = $msg;
+$context['id'] = $_SESSION['id'];
+$context['user_name'] = $_SESSION['user_name'];
 
 $template = $twig->loadTemplate('item_submit.html.twig');
 $template->display($context);
+
+// $image = array_filter($dataArr['image']['name']);
+// for ($i = 0;$i < count($image);$i++){
+//   $image[$i] = 'upload_' . $image[$i];
+// }
+// $image = implode(',', $image);

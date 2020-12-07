@@ -292,7 +292,7 @@ header .nav_bg {
 #index-wrapper .container .block-item .item-list {
   display: flex;
   flex-wrap: wrap;
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
 }
 #index-wrapper .container .block-item .item-list .item {
@@ -325,6 +325,12 @@ header .nav_bg {
 }
 #index-wrapper .container .block-item .item-list .item ul .likes span {
   font-weight: bold;
+}
+#index-wrapper .container .likes .fas {
+  color: red;
+}
+#index-wrapper .container .likes .fas span {
+  color: black;
 }
 #index-wrapper .container .ctg-name {
   width: 90%;
@@ -526,6 +532,13 @@ header .nav_bg {
   font-weight: bold;
 }
 
+.likes .fas {
+  color: red;
+}
+.likes .fas span {
+  color: black;
+}
+
 .pop-up-p {
   text-align: right;
 }
@@ -550,6 +563,9 @@ header .nav_bg {
 #category-search {
   padding-right: 30px;
   margin: 30px 0;
+}
+#category-search p {
+  margin: 10px 0;
 }
 @media screen and (max-width: 960px) {
   #category-search {
@@ -679,8 +695,14 @@ footer .footer-menu ul li a {
 #item-detail-wrapper .item-flex .slider-area .item-image {
   width: 400px !important;
 }
+#item-detail-wrapper .item-flex .slider-area .item-image img {
+  height: 270px;
+}
 #item-detail-wrapper .item-flex .slider-area .item-nav {
   width: 400px !important;
+}
+#item-detail-wrapper .item-flex .slider-area .item-nav img {
+  height: 94px;
 }
 @media screen and (max-width: 560px) {
   #item-detail-wrapper .item-flex .slider-area .item-image {
@@ -844,8 +866,8 @@ footer .footer-menu ul li a {
   text-align: center;
 }
 #cart-wrapper #cart-list .item .image img {
-  width: 100px;
-  height: 100px;
+  width: 170px;
+  height: 120px;
 }
 #cart-wrapper #cart-list .item .item-detail {
   width: 40%;
@@ -1483,8 +1505,8 @@ footer .footer-menu ul li a {
   float: left;
 }
 #orderhis-wrapper .container .order-box .box .item .image img {
-  width: 100px;
-  height: 100px;
+  width: 170px;
+  height: 120px;
 }
 #orderhis-wrapper .container .order-box .box .item .item-detail {
   font-size: 1.4rem;
@@ -1532,26 +1554,32 @@ footer .footer-menu ul li a {
   height: 150px;
 }
 
-#contact-wrapper {
+#message-wrapper {
   font-size: 1.6rem;
 }
-#contact-wrapper .container {
+#message-wrapper .container {
   width: 80%;
   margin: 100px auto 80px auto;
 }
-#contact-wrapper .container h1 {
+#message-wrapper .container h1 {
   font-size: 1.8rem;
   text-align: center;
 }
-#contact-wrapper .container p {
+#message-wrapper .container p {
   text-align: center;
 }
-#contact-wrapper .container .contents {
+#message-wrapper .container .contents {
   margin: 30px 0;
   text-align: center;
 }
-#contact-wrapper .container .tel {
+#message-wrapper .container .tel {
   margin-bottom: 30px;
+}
+#message-wrapper .container .url {
+  margin: 10px 0;
+}
+#message-wrapper .container .url a:hover {
+  color: #a5a1a1;
 }
 
 #mypage-item-wrapper {

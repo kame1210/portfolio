@@ -60,8 +60,8 @@ class Item
     $res = $this->db->selectLimit($table, $col, $where, $arrVal, $limit, $offset);
 
     if ($res !== false && count($res) !== 0) {
-      for ($i = 0;$i < count($res);$i++) {
-        $res[$i]['image'] = explode(',' , $res[$i]['image']);
+      for ($i = 0; $i < count($res); $i++) {
+        $res[$i]['image'] = explode(',', $res[$i]['image']);
       }
       return $res;
     } else {
@@ -125,8 +125,8 @@ class Item
     $res = $this->db->select($table, $col, $where, $arrVal);
 
     if ($res !== false && count($res) !== 0) {
-      for ($i = 0;$i < count($res);$i++) {
-        $res[$i]['image'] = explode(',' , $res[$i]['image']);
+      for ($i = 0; $i < count($res); $i++) {
+        $res[$i]['image'] = explode(',', $res[$i]['image']);
       }
       return $res;
     } else {
@@ -145,8 +145,8 @@ class Item
     $res = $this->db->select($table, $col, $where, $arrVal);
 
     if ($res !== false && count($res) !== 0) {
-      for ($i = 0;$i < count($res);$i++) {
-        $res[$i]['image'] = explode(',' , $res[$i]['image']);
+      for ($i = 0; $i < count($res); $i++) {
+        $res[$i]['image'] = explode(',', $res[$i]['image']);
       }
       return $res;
     } else {
@@ -165,8 +165,8 @@ class Item
     $res = $this->db->selectlike($table, $col, $where, $like, $arrVal);
 
     if ($res !== false && count($res) !== 0) {
-      for ($i = 0;$i < count($res);$i++) {
-        $res[$i]['image'] = explode(',' , $res[$i]['image']);
+      for ($i = 0; $i < count($res); $i++) {
+        $res[$i]['image'] = explode(',', $res[$i]['image']);
       }
       return $res;
     } else {
@@ -256,6 +256,31 @@ class Item
     ];
 
     $res = $this->db->insert($table, $insData);
+
+    return $res;
+  }
+
+  public function updateItemData($dataArr)
+  {
+    $image = array_filter($dataArr['image']['name']);
+    for ($i = 0; $i < count($image); $i++) {
+      $image[$i] = 'upload_' . $image[$i];
+    }
+    $image = implode(',', $image);
+
+    $table = ' item ';
+    $insData = [
+      'item_name' => $dataArr['item_name'],
+      'detail' => $dataArr['detail'],
+      'price' => $dataArr['price'],
+      'image' => $image,
+      'ctg_id' => $dataArr['category'],
+      'subctg_id' => $dataArr['subcategory']
+    ];
+    $where = ' item_id = ? ';
+    $arrVal =  [$_POST['item_id']];
+
+    $res = $this->db->update($table, $insData, $where, $arrVal);
 
     return $res;
   }

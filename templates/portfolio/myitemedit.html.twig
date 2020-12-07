@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>商品情報編集ページ</title>
 		<link href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -12,62 +13,82 @@
 		<div id="form-wrapper">
 			<div class="container">
 				<form method="post" action="myitemedit.php" enctype="multipart/form-data">
-					<p id="title">
+					<h2 id="title">
 						商品編集
-					</p>
+					</h2>
 					<div class="form-list">
-						<p class="form-title">商品名</p>
-						<input type="text" name="item_name" value="{{itemData.name}}">
+						<div class="form-item">
+							<p class="form-title">商品名</p>
+							<input type="text" name="item_name" value="{{itemData.name}}">
+						</div>
 						{% if errArr.item_name | length > 0 %}
-							<span>{{errArr.item_name}}</span>
+							<span class="red">{{errArr.item_name}}</span>
 						{% endif %}
 					</div>
 					<div class="form-list">
-						<p class="form-title">価格</p>
-						<input type="text" name="price" value="{{itemData.price}}">
-						{% if itemData.price | length > 0 %}
-							<span>{{errArr.price}}</span>
+						<div class="form-item">
+							<p class="form-title">価格</p>
+							<input type="text" name="price" value="{{itemData.price}}">
+						</div>
+						{% if errArr.price | length > 0 %}
+							<span class="red">{{errArr.price}}</span>
 						{% endif %}
 					</div>
 					<div class="form-list">
-						<p class="form-title">商品詳細</p>
-						<textarea name="detail" cols="70" rows="20">{{itemData.detail}}</textarea>
+						<div class="form-item">
+							<p class="form-title content">商品詳細</p>
+							<textarea name="detail" cols="70" rows="20">{{itemData.detail}}</textarea>
+						</div>
 						{% if errArr.detail | length > 0 %}
-							<span>{{errArr.detail}}</span>
+							<span class="red">{{errArr.detail}}</span>
 						{% endif %}
 					</div>
 					<div class="form-list">
-						<p class="form-title">カテゴリー</p>
-						{% for index, label in ctgList %}
-							<input type="radio" name="category" value="{{label.ctg_id}}" id="category_{{label.ctg_id}}" {% if dataArr.category == label.ctg_id %} checked="checked" {% endif %}>
-							<label for="category_{{label.ctg_id}}">{{label.category_name}}</label>
-						{% endfor %}
+						<div class="form-item">
+							<p class="form-title">カテゴリー</p>
+							<div class="block auto-size">
+								{% for index, label in ctgList %}
+									<input type="radio" name="category" value="{{label.ctg_id}}" id="category_{{label.ctg_id}}" {% if itemData.category == label.ctg_id %} checked="checked" {% endif %} class="radio">
+									<label for="category_{{label.ctg_id}}" class="radio">{{label.category_name}}</label>
+								{% endfor %}
+							</div>
+						</div>
 						{% if errArr.category | length > 0 %}
-							<span>{{errArr.category}}</span>
+							<span class="red">{{errArr.category}}</span>
 						{% endif %}
 					</div>
 					<div class="form-list">
-						<p class="form-title">サブカテゴリー</p>
-						{% for label in subCtgList %}
-							<input type="radio" name="subcategory" value="{{label.ctg_id}}" id="subcategory_{{label.ctg_id}}" {% if dataArr.subcategory == ctg_id %} checked="checked" {% endif %}>
-							<label for="subcategory_{{label.ctg_id}}">{{label.category_name}}</label>
-						{% endfor %}
+						<div class="form-item">
+							<p class="form-title">サブカテゴリー</p>
+							<div class="block auto-size">
+								{% for label in subCtgList %}
+									<input type="radio" name="subcategory" value="{{label.ctg_id}}" id="subcategory_{{label.ctg_id}}" {% if itemData.subcategory == label.ctg_id %} checked="checked" {% endif %} class="radio">
+									<label for="subcategory_{{label.ctg_id}}" class="radio">{{label.category_name}}</label>
+								{% endfor %}
+							</div>
+						</div>
 						{% if errArr.subcategory | length > 0 %}
-							<span>{{errArr.subcategory}}</span>
+							<span class="red">{{errArr.subcategory}}</span>
 						{% endif %}
 					</div>
-					<div class="form-list">
-						<p class="form-title">画像</p>
-						<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{itemData.image}}" alt="{{itemData.item_name}}">
-						<input type="file" name="image">
+						<div class="form-list">
+						<div class="form-item">
+							<p class="form-title content">画像</p>
+							<div class="block auto-size">
+								<p>サムネイル1</p>
+								<input type="file" name="image[]" class="thumbnail">
+								<p>サムネイル2</p>
+								<input type="file" name="image[]" class="thumbnail">
+								<p>サムネイル3</p>
+								<input type="file" name="image[]" class="thumbnail">
+								<p>サムネイル4</p>
+								<input type="file" name="image[]" class="thumbnail">
+								<p>サムネイル5</p>
+								<input type="file" name="image[]" class="thumbnail">
+							</div>
+						</div>
 						{% if errArr.image | length > 0 %}
-							<span>{{errArr.image}}</span>
-						{% endif %}
-						{% if errArr.size | length > 0 %}
-							<span>{{errArr.image}}</span>
-						{% endif %}
-						{% if errArr.mime | length > 0 %}
-							<span>{{errArr.image}}</span>
+							<span class="red">{{errArr.image}}</span>
 						{% endif %}
 					</div>
 					<div class="submit-btn-box">
@@ -79,7 +100,7 @@
 					</div>
 				</form>
 				<div>
-					<p class="url">
+					<p class="url" style="text-align:center;">
 						<a href="http://localhost/DT/portfolio/submitItem.php">一覧へ移動する</a>
 					</p>
 				</div>

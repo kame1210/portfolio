@@ -80,32 +80,6 @@ $(function () {
     });
   });
 
-// カーセルスライダー
-// $(function () {
-//   $('.slider').slick({
-//     infinite: true,
-//     initialSlide: 0,
-//     autoplay: false,
-//     autoplaySpeed: 4000,
-//     slidesToShow: 5,
-//     slidesToScroll: 1,
-//     responsive: [
-//       {
-//         breakpoint: 960,
-//         settings: {
-//           slidesToShow: 3,
-//         }
-//       },
-//       {
-//         breakpoint: 768,
-//         settings: {
-//           slidesToShow: 2,
-//         }
-//       }
-//     ]
-//   });
-// });
-
 // item_detail カーセルスライダー
 $(function () {
   $('.slider').slick({

@@ -30,10 +30,12 @@
 						{% for value in dataArr %}
 							<div class="item">
 								<div class="image">
-									<img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image}}" alt="{{value.item_name}}">
+									<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{ value.item_id }}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image.0}}" alt="{{value.item_name}}"></a>
 								</div>
 								<div class="item-detail">
-									<p class="name">{{value.item_name}}</p>
+									<p class="name">
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{ value.item_id }}">{{ value.item_name }}</a>
+									</p>
 									<p class="price">&yen;{{value.price|number_format(0, '.', ',')}}</p>
 									<p class="quantity">現在の数量：{{value.quantity}}
 										<form action="cart.php" method="post" class="quantity-form">

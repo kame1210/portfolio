@@ -9,7 +9,6 @@ use portfolio\lib\PDODatabase;
 use portfolio\lib\Common;
 use portfolio\lib\Session;
 use portfolio\lib\Item;
-use portfolio\lib\Likes;
 
 $loader = new \Twig_Loader_Filesystem(Bootstrap::TEMPLATE_DIR);
 $twig = new \Twig_Environment($loader, [
@@ -17,38 +16,51 @@ $twig = new \Twig_Environment($loader, [
 ]);
 
 $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE);
-
-$dbgroup = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE, '', '', '', 'item_id');
-
-$function = new \Twig_SimpleFunction('like_exsits', function ($item_id) {
-  $dbgroup = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE, '', '', '', 'item_id');
-  $likes = new likes($dbgroup);
-  return $likes->like_exsits($_SESSION['id'], $item_id);
-});
-$twig->addFunction($function);
-
 $common = new Common($db);
 $ses = new Session($db);
 $itm = new Item($db);
-$likes = new Likes($dbgroup);
+
+$errArr = [];
 
 if (isset($_SESSION['user_name']) === false || isset($_SESSION['id']) === false) {
   header('Location: http://localhost/DT/portfolio/login.php');
   exit();
+} else {
+
+  $table = ' member ';
+  $column = '';
+  $where = ' mem_id = ? ';
+  $arrVal = [$_SESSION['id']];
+
+  $res = $db->select($table, $column, $where, $arrVal);
+
+  if (count($res) !== 0) {
+    $userData = $res[0];
+  } else {
+    $errArr['id'] = 'データが取得できませんでした';
+  }
 }
 
 if (isset($_SESSION['id']) === true) {
   $likesItemList = $itm->getlikesItemList();
 }
 
-$likeArr = $likes->getLike();
+if (isset($_SESSION['id']) === true) {
+  $submitItemList = $itm->submitItemList();
+}
+
+$sexArr = initMaster::getSex();
+
+list($yearArr, $monthArr, $dayArr) = initMaster::getDate();
 
 $context = [];
 
-$context['id'] = $_SESSION['id'];
-$context['user_name'] = $_SESSION['user_name'];
+$context['userData'] = $userData;
 $context['likesItemList'] = $likesItemList;
-$context['likeArr'] = $likeArr;
+$context['submitItemList'] = $submitItemList;
+$context['user_name'] = $_SESSION['user_name'];
+$context['id'] = $_SESSION['id'];
 
-$template = $twig->loadTemplate('like_item.html.twig');
+
+$template = $twig->loadTemplate('mypage.html.twig');
 $template->display($context);

@@ -17,13 +17,20 @@ $dbLimit = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB
 $dbgroup = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE, '', '', '', 'item_id');
 
 $ses = new Session($db);
-$itm = new Item($dbLimit);
+$itm = new Item($db);
 $likes = new likes($dbgroup);
 
 $loader = new \Twig_Loader_Filesystem(Bootstrap::TEMPLATE_DIR);
 $twig = new \Twig_Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
+
+$function = new \Twig_SimpleFunction('like_exsits', function ($item_id) {
+  $dbgroup = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE, '', '', '', 'item_id');
+  $likes = new likes($dbgroup);
+  return $likes->like_exsits($_SESSION['id'], $item_id);
+});
+$twig->addFunction($function);
 
 $ses->checkSession();
 
@@ -37,9 +44,9 @@ $subCateArr = $itm->getSubCategoryList();
 // アイテムリストの取得
 $itemArr = [];
 $type = 'category';
-$itemArr[0] = $itm->getItemList($type, 1);
-$itemArr[1] = $itm->getItemList($type, 2);
-$itemArr[2] = $itm->getItemList($type, 3);
+$itemArr[0] = $itm->getItemList($type, 1, '', 8);
+$itemArr[1] = $itm->getItemList($type, 2, '', 8);
+$itemArr[2] = $itm->getItemList($type, 3, '', 8);
 
 // いいねの表示
 $likeArr = $likes->getLike();

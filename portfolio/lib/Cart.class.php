@@ -42,7 +42,13 @@ class Cart
     $where = ' c.mem_id = ? AND c.delete_flg = ? ';
     $arrVal = [$mem_id, 0];
 
-    return $this->db->select($table, $column, $where, $arrVal);
+    $res = $this->db->select($table, $column, $where, $arrVal);
+
+    for ($i = 0; $i < count($res); $i++) {
+      $res[$i]['image'] = explode(',', $res[$i]['image']);
+    }
+    
+    return $res;
   }
 
   public function getCartquantity($mem_id, $item_id)
