@@ -9,7 +9,7 @@ use portfolio\lib\PDODatabase;
 use portfolio\lib\Session;
 use portfolio\lib\Item;
 use portfolio\lib\likes;
-use portfolio\lib\Page2;
+use portfolio\lib\Page;
 
 $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE);
 
@@ -18,7 +18,7 @@ $dbgroup = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB
 $ses = new Session($db);
 $itm = new Item($db);
 $likes = new likes($dbgroup);
-$page = new Page2();
+$page = new Page();
 
 $loader = new \Twig_Loader_Filesystem(Bootstrap::TEMPLATE_DIR);
 $twig = new \Twig_Environment($loader, [
@@ -135,24 +135,3 @@ if (isset($_SESSION['user_name']) === true) {
 
 $template = $twig->loadTemplate('list.html.twig');
 $template->display($context);
-
-
-
-
-// カテゴリーでの検索処理
-// $ctg_id = (isset($_GET['ctg_id']) === true && preg_match('/^[0-9]+$/', $_GET['ctg_id']) === 1) ? $_GET['ctg_id'] : '';
-
-// 検索窓での検索処理
-// $search = (isset($_GET['search']) === true) ? '%' . $_GET['search'] . '%' : '';
-
-// $subcate = (isset($_GET['subcate'])) ? $_GET['subcate'] : '';
-
-
-// 検索窓が使われていたら、if処理。使われてなかったらelse処理
-// $dataArr = [];
-// if ($search !== '') {
-//   unset($_GET['send']);
-//   $dataArr = $itm->getItemsearch($search);
-// } else {
-//   $dataArr = $itm->getItemList($ctg_id, $pages->max_view, $page);
-// }

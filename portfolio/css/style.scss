@@ -240,18 +240,27 @@ header {
       .item-list {
         display: flex;
         flex-wrap: wrap;
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
+        @include mq (sp) {
+          width:95%;
+        }
         .item {
           width: 250px;
           height: auto;
           padding: 15px 15px;
+          @include mq (sp) {
+            width:180px;
+          }
           ul {
             display: inline-block;
             .image {
               img {
                 width: 250px;
                 height: 175px;
+                @include mq(sp){
+                  width:180px;
+                }
               }
               a {
                 overflow: hidden;
@@ -606,19 +615,20 @@ footer {
   font-size: 1.6rem;
   background-color: #bcccd9;
   .footer-menu {
-    height: 50px;
     ul {
       display: flex;
       justify-content: center;
       margin: 0;
+      padding:10px;
       padding-inline-start: 0;
       li {
-        padding: 10px;
-        a {
-          text-decoration: none;
-          color: $font_color;
-        }
+        padding:0 10px;
       }
+    }
+    .copyright {
+      text-align: center;
+      margin:0;
+      padding:0 0 4px 0;
     }
   }
 }
@@ -1476,7 +1486,7 @@ footer {
 #mypage-item-wrapper {
   font-size: 1.6rem;
   .container {
-    width: 80%;
+    width: 90%;
     margin: 30px auto;
     .title {
       margin: 5px 0 0 0;

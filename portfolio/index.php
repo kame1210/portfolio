@@ -25,6 +25,7 @@ $twig = new \Twig_Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
+// likeのスタイル保持のための暫定処置
 $function = new \Twig_SimpleFunction('like_exsits', function ($item_id) {
   $dbgroup = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE, '', '', '', 'item_id');
   $likes = new likes($dbgroup);

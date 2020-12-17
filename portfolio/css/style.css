@@ -20,11 +20,11 @@ ul {
 
 a {
   text-decoration: none;
-  color: #000;
+  color: #333;
 }
 
 p {
-  margin: 0;
+  margin: 5px;
 }
 
 .Required {
@@ -292,13 +292,23 @@ header .nav_bg {
 #index-wrapper .container .block-item .item-list {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
+}
+@media screen and (max-width: 560px) {
+  #index-wrapper .container .block-item .item-list {
+    width: 95%;
+  }
 }
 #index-wrapper .container .block-item .item-list .item {
   width: 250px;
   height: auto;
   padding: 15px 15px;
+}
+@media screen and (max-width: 560px) {
+  #index-wrapper .container .block-item .item-list .item {
+    width: 180px;
+  }
 }
 #index-wrapper .container .block-item .item-list .item ul {
   display: inline-block;
@@ -306,6 +316,11 @@ header .nav_bg {
 #index-wrapper .container .block-item .item-list .item ul .image img {
   width: 250px;
   height: 175px;
+}
+@media screen and (max-width: 560px) {
+  #index-wrapper .container .block-item .item-list .item ul .image img {
+    width: 180px;
+  }
 }
 #index-wrapper .container .block-item .item-list .item ul .image a {
   overflow: hidden;
@@ -650,21 +665,20 @@ footer {
   font-size: 1.6rem;
   background-color: #bcccd9;
 }
-footer .footer-menu {
-  height: 50px;
-}
 footer .footer-menu ul {
   display: flex;
   justify-content: center;
   margin: 0;
+  padding: 10px;
   padding-inline-start: 0;
 }
 footer .footer-menu ul li {
-  padding: 10px;
+  padding: 0 10px;
 }
-footer .footer-menu ul li a {
-  text-decoration: none;
-  color: #333;
+footer .footer-menu .copyright {
+  text-align: center;
+  margin: 0;
+  padding: 0 0 4px 0;
 }
 
 #item-detail-wrapper {
@@ -1586,7 +1600,7 @@ footer .footer-menu ul li a {
   font-size: 1.6rem;
 }
 #mypage-item-wrapper .container {
-  width: 80%;
+  width: 90%;
   margin: 30px auto;
 }
 #mypage-item-wrapper .container .title {
