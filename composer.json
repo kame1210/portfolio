@@ -1,6 +1,6 @@
 {
-   "require":{
-      "twig/twig":"~1.0",
-      "stripe/stripe-php":"^7.60"
+   "require": {
+      "twig/twig": "~1.0",
+      "stripe/stripe-php": "^7.60"
    }
 }
