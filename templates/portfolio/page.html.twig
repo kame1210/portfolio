@@ -9,30 +9,3 @@
 		{% endif %}
 	{% endfor %}
 </div>
-
-
-{# <span>
-	<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.php?
-	ctg_id={{ctg_id}} →ここを今ある値にしたい。
-	&page={{prev}}">&laquo;前へ</a>
-</span> #}
-
-{# <div class="page-list">
-	<div class="container">
-		{% if page > 1 and page != 1 %}
-			<span>
-				<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.ph{{ data }}page={{prev}}">&laquo;前へ</a>
-			</span>
-		{% endif %}
-		{% for page in displayPage %}
-			<span>
-				<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.php?ctg_id={{ctg_id}}&page={{page}}">{{page}}</a>
-			</span>
-		{% endfor %}
-		{% if page < totalPage %}
-			<span>
-				<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}list.php?ctg_id={{ctg_id}}&page={{next}}">次へ&raquo;</a>
-			</span>
-		{% endif %}
-	</div>
-</div> #}

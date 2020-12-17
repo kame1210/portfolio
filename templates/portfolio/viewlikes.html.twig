@@ -1,5 +1,6 @@
 <li class="likes">
 	<div class="btn-like" data-item-id="{{value.item_id}}">
+		{% if id | length > 0 %}
 			{% if  like_exsits(value.item_id) == true %}
 				<i class="fas red fa-heart">
 					<span>
@@ -21,61 +22,14 @@
 					</span>
 				</i>
 			{% endif %}
-		{# {% endfor %}
-	{# </div>
-</li> #}
-
-
-{# <li class="likes">
-	<div class="btn-like" data-item-id="{{value.item_id}}">
-		{% for likeMember in likeMemberArr %}
-			{% if  likeMember.item_id == value.item_id %}
-				<i class="fas red fa-heart">
-					<span>
-						{% for like in likeArr %}
-							{% if like.item_id == value.item_id %}
-								{{like.likes}}
-							{% endif %}
-						{% endfor %}
-					</span>
-				</i>
-			{% else %}
-				<i class="far fa-heart">
-					<span>
-						{% for like in likeArr %}
-							{% if like.item_id == value.item_id %}
-								{{like.likes}}
-							{% endif %}
-						{% endfor %}
-					</span>
-				</i>
-			{% endif %}
-		{% endfor %}
-	</div>
-</li> #}
-
-
-
-
-
-{# <i class="fas red fa-heart">
-					<span>
-						{% for like in likeArr %}
-							{% if like.item_id == value.item_id %}
-								{{like.likes}}
-							{% endif %}
-						{% endfor %}
-					</span>
-				</i>
-			</div>
-		</li>
-		
-		<i class="far fa-heart">
-			<span>
-				{% for like in likeArr %}
-					{% if like.item_id == value.item_id %}
-						{{like.likes}}
-					{% endif %}
-				{% endfor %}
-			</span>
-		</i> #}
+		{% else %}
+			<i class="far fa-heart">
+				<span>
+					{% for like in likeArr %}
+						{% if like.item_id == value.item_id %}
+							{{like.likes}}
+						{% endif %}
+					{% endfor %}
+				</span>
+			</i>
+		{% endif %}
