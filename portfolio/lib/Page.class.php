@@ -14,7 +14,7 @@ class Page
     $this->setDefaultPage(1); //初期ページ
     $this->setPageLink(5); //奇数 表示ページ数
   }
-
+  
   public function setMaxViewItem($number)
   {
     $this->maxViewItem = $number < 1 ? 1 : $number;

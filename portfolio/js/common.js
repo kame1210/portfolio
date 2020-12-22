@@ -58,27 +58,27 @@ $(function () {
 
 });
 
-  // モーダルウインドウ
-  $(function () {
-    $(document).on('open', '.remodal', function () {
-      var modal = $(this);
-    });
-    $(document).on('opened', '.remodal', function () {
-      var modal = $(this);
-    });
-    $(document).on('close', '.remodal', function () {
-      var modal = $(this);
-    });
-    $(document).on('closed', '.remodal', function () {
-      var modal = $(this);
-    });
-    $(document).on('confirm', '.remodal', function () {
-      var modal = $(this);
-    });
-    $(document).on('cancel', '.remodal', function () {
-      var modal = $(this);
-    });
+// モーダルウインドウ
+$(function () {
+  $(document).on('open', '.remodal', function () {
+    var modal = $(this);
   });
+  $(document).on('opened', '.remodal', function () {
+    var modal = $(this);
+  });
+  $(document).on('close', '.remodal', function () {
+    var modal = $(this);
+  });
+  $(document).on('closed', '.remodal', function () {
+    var modal = $(this);
+  });
+  $(document).on('confirm', '.remodal', function () {
+    var modal = $(this);
+  });
+  $(document).on('cancel', '.remodal', function () {
+    var modal = $(this);
+  });
+});
 
 // item_detail カーセルスライダー
 $(function () {
@@ -88,7 +88,7 @@ $(function () {
     slidesToShow: 1,
     arrows: true,
     slidesToScroll: 1,
-    swipe:true,
+    swipe: true,
     asNavFor: '.slider-nav',
   });
   $('.slider-nav').slick({
@@ -139,32 +139,3 @@ $(function () {
     $('body').toggleClass('nav_open');
   });
 });
-
-// $('#address_search').click(function () {
-
-//   let zip1 = $('#zip1').val();
-//   let zip2 = $('#zip2').val();
-
-//   let entry_url = $('#entry_url').val();
-
-//   if (zip1.match(/[0-9]{3}/) === null || zip2.match(/[0-9]{4}/) === null) {
-//     alert('正確な郵便番号を入力してください');
-//     return false;
-//   } else {
-//     $.ajax({
-//       type: "get",
-//       url: entry_url + "/postcode_search.php?zip1=" + escape(zip1) + "&zip2=" + escape(zip2),
-//     }).then(
-//       function (data) {
-//         if (data == 'no' || data == '') {
-//           alert('該当する郵便番号がありません');
-//         } else {
-//           $('#address').val(data);
-//         }
-//       },
-//       function (data) {
-//         alert('読み込みに失敗しました');
-//       },
-//     );
-//   }
-// });
