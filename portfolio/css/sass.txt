@@ -1,7 +1,0 @@
-手動コンパイル
-sass --style expanded style.scss:style.css
-
-自動でコンパイル
-cd C:\xampp\htdocs\DT\portfolio\css
-
-sass --style expanded --watch style.scss:style.css
