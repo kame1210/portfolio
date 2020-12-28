@@ -9,7 +9,7 @@ use portfolio\Bootstrap;
 use portfolio\lib\PDODatabase;
 use portfolio\lib\Session;
 use portfolio\lib\Cart;
-use portfolio\lib\order;
+use portfolio\lib\Order;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Stripe\Refund;
