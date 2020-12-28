@@ -2,7 +2,7 @@
 
 namespace portfolio\lib;
 
-class order
+class Order
 {
   private $db = '';
 

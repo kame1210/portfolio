@@ -7,7 +7,7 @@ require_once dirname(__FILE__) . '/Bootstrap.class.php';
 use portfolio\lib\PDODatabase;
 use portfolio\lib\Session;
 use portfolio\lib\Item;
-use portfolio\lib\order;
+use portfolio\lib\Order;
 
 $loader = new \Twig_Loader_Filesystem(Bootstrap::TEMPLATE_DIR);
 $twig = new \Twig_Environment($loader, [
