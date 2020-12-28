@@ -21,9 +21,11 @@ $twig = new \Twig_Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
+
+
 // ログイン状態だった場合は、マイページに遷移
 if (isset($_SESSION['user_name']) === true) {
-  header('Location: http://localhost/DT/portfolio/mypage.php');
+  header("Location:" . Bootstrap::ENTRY_URL . "mypage.php");
 }
 
 
