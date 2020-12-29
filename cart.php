@@ -25,7 +25,7 @@ $customer_no = $_SESSION['customer_no'];
 
 // sessionでmem_id取得
 if ($_SESSION['id'] === NULL && $_SESSION['user_name'] === NULL) {
-  header("Location: http://localhost/DT/portfolio/login.php");
+  header("Location:" . Bootstrap::ENTRY_URL . "login.php");
 }
 
 $mem_id = $_SESSION['id'];
@@ -49,7 +49,7 @@ $cartItem = in_array($item_id, $result);
 // $item_idがあればcartテーブルにinsert
 if ($item_id !== '' && $cartItem === false) {
   $res = $cart->insCartData($mem_id, $item_id);
-  header("Location: http://localhost/DT/portfolio/cart.php");
+  header("Location:" . Bootstrap::ENTRY_URL . "cart.php");
   if ($res === false) {
     echo '商品購入に失敗しました。';
     exit();
@@ -58,7 +58,7 @@ if ($item_id !== '' && $cartItem === false) {
   $num = intval($quantity[0]['quantity']) + 1;
   $res = $cart->updateCartData($mem_id, $item_id, $num);
   if ($res === true) {
-    header("Location: http://localhost/DT/portfolio/cart.php");
+    header("Location:" . Bootstrap::ENTRY_URL . "cart.php");
   }
 }
 
