@@ -2,6 +2,8 @@
 
 namespace portfolio\lib;
 
+use portfolio\Bootstrap;
+
 class Member
 {
   private $db = null;
@@ -47,7 +49,8 @@ class Member
     return $res;
   }
 
-  public function deleteMemberCheck($dataArr){
+  public function deleteMemberCheck($dataArr)
+  {
     $memData = $this->loginMember($dataArr['email']);
 
     if ($memData !== '') {
@@ -61,7 +64,6 @@ class Member
       $errMsg = 'ユーザー情報が間違っています。';
       return $errMsg;
     }
-
   }
 
   public function memberCheck($mem_id)
@@ -90,7 +92,8 @@ class Member
     return $res;
   }
 
-  public function memberDelete($dataArr){
+  public function memberDelete($dataArr)
+  {
     $table = ' member ';
     $insData = ['delete_flg' => '1'];
     $where = ' email = ? ';
@@ -101,7 +104,8 @@ class Member
     return $res;
   }
 
-  public function memberRegist($dataArr){
+  public function memberRegist($dataArr)
+  {
     $dataArr['password'] = password_hash($dataArr['password'], PASSWORD_DEFAULT);
 
     $table = ' member ';
@@ -130,6 +134,6 @@ class Member
 
     session_destroy();
 
-    header('Location: http://localhost/DT/portfolio/index.php');
+    header("Location:" . Bootstrap::ENTRY_URL . "index.php");
   }
 }
