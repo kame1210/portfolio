@@ -3,7 +3,6 @@
 namespace portfolio;
 
 require_once dirname(__FILE__) . '/Bootstrap.class.php';
-require_once '/home/hoge/stripe-php/init.php';
 
 use Exception;
 use portfolio\Bootstrap;
