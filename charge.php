@@ -3,6 +3,7 @@
 namespace portfolio;
 
 require_once dirname(__FILE__) . '/Bootstrap.class.php';
+require_once '/home/hoge/stripe-php/init.php';
 
 use Exception;
 use portfolio\Bootstrap;
@@ -60,8 +61,7 @@ try {
   // 決済確定処理
   $charge->capture();
 
-  header("Location: http://localhost/DT/portfolio/orderComplete.php");
-  
+  header("Location:" . Bootstrap::ENTRY_URL . "orderComplete.php");
 } catch (Exception $e) {
   var_dump($e->getMessage());
   if ($chargeId !== null) {
