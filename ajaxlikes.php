@@ -51,6 +51,6 @@ if (isset($_POST['item_id']) && isset($_SESSION['id'])) {
     echo $likeCount;
   }
 } else {
-  echo '';
-  header("Location:" . Bootstrap::ENTRY_URL . "login.php");
+  echo 'ログインしてください';
+  // header("Location:" . Bootstrap::ENTRY_URL . "login.php");
 }
