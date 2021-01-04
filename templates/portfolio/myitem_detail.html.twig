@@ -39,14 +39,14 @@
 				</div>
 			</div>
 			<div class="edit">
-				<form action="myitemedit.php" method="post" onsubmit="return deleteItem()">
+				<form action="myitem_edit.php" method="post" onsubmit="return deleteItem()">
 					<input type="hidden" name="name" value="{{itemData.item_name}}">
 					<input type="hidden" name="detail" value="{{itemData.detail}}">
 					<input type="hidden" name="price" value="{{itemData.price}}">
 					<input type="hidden" name="item_id" value="{{itemData.item_id}}">
 					<input type="submit" name="delete" value="削除">
 				</form>
-				<form action="myitemedit.php" method="post">
+				<form action="myitem_edit.php" method="post">
 					<input type="hidden" name="name" value="{{itemData.item_name}}">
 					<input type="hidden" name="detail" value="{{itemData.detail}}">
 					<input type="hidden" name="price" value="{{itemData.price}}">

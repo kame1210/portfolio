@@ -93,32 +93,3 @@ $context['errArr'] = $errArr;
 
 $template = $twig->loadTemplate($template);
 $template->display($context);
-
-
-    // メアドチェック。DBに同じアドレスがないか
-    // $table = ' member ';
-    // $column = ' email ';
-    // $where = ' email = ? ';
-    // $arrVal = [$dataArr['email']];
-
-    // $res = $db->select($table, $column, $where, $arrVal);
-
-    // メアドが存在していたら、変数に代入
-    // if (count($res) !== 0) {
-    //   $emailData = $res[0];
-    // } else {
-    //   $emailData['email'] = '';
-    // }
-
-
-    // $table = ' member ';
-    // $column = '';
-    // $where = ' email = ? AND delete_flg = ? ';
-    // $arrVal = [$dataArr['email'], 0];
-
-    // $res = $db->select($table, $column, $where, $arrVal);
-
-    // $memData = $res[0];
-
-    // $_SESSION['id'] = $memData['mem_id'];
-    // $_SESSION['user_name'] = $memData['family_name'] . $memData['first_name'];

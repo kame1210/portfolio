@@ -18,7 +18,7 @@ $ses = new Session($db);
 $errArr = [];
 
 if (isset($_SESSION['user_name']) === false || isset($_SESSION['id']) === false) {
-  header('Location: http://localhost/DT/portfolio/login.php');
+  header('Location: ' . Bootstrap::ENTRY_URL . 'login.php');
   exit();
 }
 

@@ -42,10 +42,10 @@
 							<div class="item">
 								<ul>
 									<li class="image">
-										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image.0}}" alt="{{value[item_name]}}"></a>
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}item_detail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{value.image.0}}" alt="{{value[item_name]}}"></a>
 									</li>
 									<li class="name">
-										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}itemdetail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+										<a href="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}item_detail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
 									</li>
 									<li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
 									{% include "viewlikes.html.twig" %}

@@ -55,7 +55,7 @@ switch ($mode) {
     $arrVal = [$_POST['item_id']];
 
     $db->delete($table, $where, $arrVal);
-    header('Location: http://localhost/DT/portfolio/mypage.php');
+    header('Location: ' . Bootstrap::ENTRY_URL . 'mypage.php');
     break;
 
   case 'complete':
@@ -86,7 +86,7 @@ switch ($mode) {
       $res = $itm->updateItemData($dataArr);
 
       if ($res === true) {
-        header("Location: http://localhost/DT/portfolio/myitemdetail.php?item_id={$_POST['item_id']}");
+        header("Location: " . Bootstrap::ENTRY_URL . "myitem_detail.php?item_id={$_POST['item_id']}");
       } else {
         $errArr['miss'] = '登録に失敗しました';
       }
@@ -103,5 +103,5 @@ $context['subCtgList'] = $subCtgList;
 $context['id'] = $_SESSION['id'];
 $context['user_name'] = $_SESSION['user_name'];
 
-$template = $twig->loadTemplate('myitemedit.html.twig');
+$template = $twig->loadTemplate('myitem_edit.html.twig');
 $template->display($context);

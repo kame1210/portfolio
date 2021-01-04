@@ -52,19 +52,5 @@ if (isset($_POST['item_id']) && isset($_SESSION['id'])) {
   }
 } else {
   echo '';
-  header("Location: http://localhost/DT/login.php");
+  header("Location:" . Bootstrap::ENTRY_URL . "login.php");
 }
-
-
-// select処理
-  // $table = ' likes ';
-  // $column = '';
-  // $where = ' mem_id = ? AND item_id = ? ';
-  // $arrVal = [$mem_id, $item_id];
-
-// delete
-  // $table = ' likes ';
-  // $where = ' mem_id = ? AND item_id = ? ';
-  // $deleteVal = [$mem_id, $item_id];
-
-  // $db->delete($table, $where, $deleteVal);

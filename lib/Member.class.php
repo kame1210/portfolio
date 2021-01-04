@@ -24,7 +24,7 @@ class Member
         $_SESSION['user_name'] = $loginData['family_name'] . $loginData['first_name'];
         $_SESSION['email'] = $loginData['email'];
 
-        header('Location: http://localhost/DT/portfolio/index.php');
+        header("Location:" . Bootstrap::ENTRY_URL . "index.php");
       } else {
         $errMsg = 'パスワードかメールアドレスが違います';
         return  $errMsg;
