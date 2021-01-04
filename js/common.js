@@ -51,7 +51,7 @@ $(function () {
       function (data) {
         console.log('ajax error');
         $(button).children('span').html(data);
-        location.href = 'http://localhost/DT/portfolio/login.php';
+        location.href = 'http://hobbykatsu.work/portfolio/login.php';
       },
     );
   });
