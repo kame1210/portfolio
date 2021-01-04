@@ -118,15 +118,3 @@ class Likes
     $res = $this->db->delete($table, $where, $deleteVal);
   }
 }
-
-  // public function getLikeUser()
-  // {
-  //   $table = ' likes ';
-  //   $column = ' item_id ';
-  //   $where = ' mem_id = ? ';
-  //   $arrVal = [$_SESSION['id']];
-
-  //   $res = $this->db->select($table, $column, $where, $arrVal);
-
-  //   return $res;
-  // }

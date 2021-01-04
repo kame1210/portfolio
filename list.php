@@ -113,10 +113,6 @@ $subCateArr = $itm->getSubCategoryList();
 // いいねの呼び出し
 $likeArr = $likes->getLike();
 
-// $like =  $likes->like_exsits($_SESSION['id'], )
-
-
-
 $context = [];
 
 $context['get'] = $_GET;
@@ -126,7 +122,7 @@ $context['dataArr'] = $dataArr;
 $context['likeArr'] = $likeArr;
 $context['pageLink'] = $pageLink;
 $context['pData'] = $pData;
-// $context['likeMemberArr'] = $likeMemberArr;
+
 
 if (isset($_SESSION['user_name']) === true) {
   $context['user_name'] = $_SESSION['user_name'];
