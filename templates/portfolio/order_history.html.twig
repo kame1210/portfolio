@@ -39,7 +39,7 @@
 								{% for key, val in orderItem %}
 									{% if val.order_id == value.order_id %}
 										<ul class="item">
-											<li class="image"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{val.image}}"></li>
+											<li class="image"><img src="{{constant('portfolio\\Bootstrap::ENTRY_URL')}}upimages/{{val.image.0}}"></li>
 											<li class="name">{{val.item_name}}</li>
 											<li class="price">&yen;{{val.price | number_format(0, '.', ',')}}</li>
 											<li class="quantity">数量:{{val.quantity}}</li>

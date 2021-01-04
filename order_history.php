@@ -36,6 +36,9 @@ $orderPrice = $orderGroup->getOrderPrice();
 // 注文情報を元にitemを取得
 $orderItem = $order->getOrderitem();
 
+for ($i = 0; $i < count($orderItem); $i++) {
+  $orderItem[$i]['image'] = explode(',', $orderItem[$i]['image']);
+}
 
 $context = [];
 
