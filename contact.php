@@ -20,8 +20,10 @@ $ses = new Session($db);
 
 $context = [];
 
-$context['id'] = $_SESSION['id'];
-$context['user_name'] = $_SESSION['user_name'];
+if (isset($_SESSION['id'])) {
+  $context['id'] = $_SESSION['id'];
+  $context['user_name'] = $_SESSION['user_name'];
+}
 
 $template = $twig->loadTemplate('contact.html.twig');
 $template->display($context);
