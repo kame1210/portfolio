@@ -60,7 +60,7 @@ try {
   // 決済確定処理
   $charge->capture();
 
-  header("Location:" . Bootstrap::ENTRY_URL . "orderComplete.php");
+  header("Location:" . Bootstrap::ENTRY_URL . "order_complete.php");
 } catch (Exception $e) {
   var_dump($e->getMessage());
   if ($chargeId !== null) {
