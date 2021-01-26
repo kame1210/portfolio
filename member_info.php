@@ -21,7 +21,7 @@ $ses = new Session($db);
 $member = new Member($db);
 
 if (isset($_SESSION['user_name']) === false || isset($_SESSION['id']) === false) {
-  header('Location: http://localhost/DT/portfolio/login.php');
+  header('Location: ' . Bootstrap::ENTRY_URL . 'login.php');
   exit();
 } else {
   $res = $member->memberCheck($_SESSION['id']);

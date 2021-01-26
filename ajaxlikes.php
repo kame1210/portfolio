@@ -52,5 +52,4 @@ if (isset($_POST['item_id']) && isset($_SESSION['id'])) {
   }
 } else {
   echo 'ログインしてください';
-  // header("Location:" . Bootstrap::ENTRY_URL . "login.php");
 }

@@ -18,26 +18,8 @@ if (isset($_GET['zip']) === true) {
   $arrVal = [$zip];
 
   $res = $db->select($table, $column, $where, $arrVal);
-  //sqlLoginfoが何故か動いていない。
 
   echo ($res !== "" && count($res) !== 0) ? $res[0]['pref'] . $res[0]['city'] . $res[0]['town'] : '';
 } else {
   echo 'no';
 }
-
-// if (isset($_GET['zip1']) === true && isset($_GET['zip2']) === true) {
-//   $zip1 = $_GET['zip1'];
-//   $zip2 = $_GET['zip2'];
-
-//   $table = ' postcode ';
-//   $column = ' pref, city, town ';
-//   $where = ' zip = ? ';
-//   $arrVal = [$zip1 . $zip2];
-
-//   $res = $db->select($table, $column, $where, $arrVal);
-//   //sqlLoginfoが何故か動いていない。
-
-//   echo ($res !== "" && count($res) !== 0) ? $res[0]['pref'] . $res[0]['city'] . $res[0]['town'] : '';
-// } else {
-//   echo 'no';
-// }

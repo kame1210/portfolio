@@ -19,7 +19,7 @@ $twig = new \Twig_Environment($loader, [
 
 // ログイン状態じゃない場合はリダイレクト
 if (!isset($_SESSION['user_name'])) {
-  header('Location: http://localhost/DT/portfolio/index.php');
+  header("Location:" . Bootstrap::ENTRY_URL . "index.php");
 }
 
 $context = [];

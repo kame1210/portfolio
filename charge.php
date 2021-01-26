@@ -68,6 +68,5 @@ try {
       'charge' => $chargeId,
     ]);
   }
-  // header("Location: http://localhost/DT/portfolio/top.php");
   exit();
 }

@@ -52,7 +52,7 @@ if (isset($_POST['update']) === true) {
   }
 
   if ($res !== false && $res !== '') {
-    header('Location: http://localhost/DT/portfolio/member_info.php');
+    header('Location: ' . Bootstrap::ENTRY_URL . 'member_info.php');
   } else {
     $errArr['fail'] = '登録に失敗しました';
   }
@@ -83,20 +83,3 @@ $context['id'] = $_SESSION['id'];
 
 $template = $twig->loadTemplate('settings.html.twig');
 $template->display($context);
-
-
-  // $table = ' member ';
-  // $column = '';
-  // $where = ' mem_id = ? ';
-  // $arrVal = [$id];
-
-  // $res = $db->select($table, $column, $where, $arrVal);
-
-  // $updateData['password'] = password_hash($updateData['password'], PASSWORD_DEFAULT);
-
-  // $table = ' member ';
-  // $arrVal = $updateData;
-  // $where = ' mem_id = ? ';
-  // $arrWhereVal = [$_SESSION['id']];
-
-  // $res = $db->update($table, $arrVal, $where, $arrWhereVal);
